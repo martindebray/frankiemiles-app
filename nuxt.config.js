@@ -86,7 +86,7 @@ export default {
       let data = [];
 
       return axios
-        .get(`http://http://207.154.244.1/index.php/wp-json/wp/v2/pages`)
+        .get(`http://207.154.244.1/index.php/wp-json/wp/v2/pages`)
         .then(res => {
           res.data.map(page => {
             data.push(page.slug);
@@ -108,7 +108,7 @@ export default {
 
                   return axios
                     .get(
-                      `http://http://207.154.244.1/index.php/wp-json/wp/v2/projects`
+                      `http://207.154.244.1/index.php/wp-json/wp/v2/projects`
                     )
                     .then(res => {
                       res.data.map(post => {
