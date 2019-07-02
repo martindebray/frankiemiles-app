@@ -93,16 +93,14 @@ export default {
           });
 
           return axios
-            .get(`http://http://207.154.244.1/index.php/wp-json/wp/v2/posts`)
+            .get(`http://207.154.244.1/index.php/wp-json/wp/v2/posts`)
             .then(res => {
               res.data.map(post => {
                 data.push(`journal/${post.slug}`);
               });
 
               return axios
-                .get(
-                  `http://http://207.154.244.1/index.php/wp-json/wp/v2/press`
-                )
+                .get(`http://207.154.244.1/index.php/wp-json/wp/v2/press`)
                 .then(res => {
                   res.data.map(post => {
                     data.push(`press/${post.slug}`);
