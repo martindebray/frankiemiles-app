@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="imgImg">
     <img :src="image.url" :title="image.title" />
     <img :src="image_two.url" :title="image_two.title" />
   </div>
@@ -18,3 +18,15 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.imgImg {
+  display: flex;
+  width: 46%;
+
+  img {
+    margin: 0 1%;
+  }
+}
+</style>
+

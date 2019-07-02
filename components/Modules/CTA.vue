@@ -15,10 +15,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .cta {
   margin: 0 auto;
+  max-width: 110px;
   text-align: center;
+
+  &.hidden {
+    opacity: 0;
+    transition: 0.3s ease;
+    pointer-events: none;
+  }
 
   a {
     display: inline-block;
@@ -34,8 +41,14 @@ export default {
 
     z-index: 1;
     position: relative;
-    font-size: inherit;
-    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 3;
+    letter-spacing: 0.8px;
+
     color: white;
     padding: 0.5em 1em;
     outline: none;

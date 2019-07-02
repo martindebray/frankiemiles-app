@@ -1,17 +1,13 @@
 <template>
-  <section class="wrap">
-    <div>
-      <h1 class="title">{{post.title.rendered}}</h1>
-      <div v-if="post.content.rendered" v-html="post.content.rendered"></div>
-    </div>
-  </section>
+  <Artikel :data="post" />
 </template>
+
 <script>
-import Logo from "~/components/Logo.vue";
+import Artikel from "~/components/Artikel";
 
 export default {
   components: {
-    Logo
+    Artikel
   },
   async asyncData({ params, $axios }) {
     let post = await $axios.$get(
@@ -20,19 +16,6 @@ export default {
 
     typeof post[0] !== `undefined` ? (post = post[0]) : (post = post);
     return { post };
-  },
-  head() {
-    return {
-      title: `${this.post.title.rendered} - Press - Frankie Miles`,
-      meta: [
-        {
-          hid: "description",
-          id: "description",
-          name: "description",
-          content: this.post.excerpt ? this.post.excerpt.rendered : ""
-        }
-      ]
-    };
   }
 };
 </script>

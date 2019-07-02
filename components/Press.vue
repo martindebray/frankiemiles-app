@@ -1,5 +1,5 @@
 <template>
-  <Grid id="press" :classes="`grid grid4 gridStart`" :data="posts"/>
+  <Grid id="press" :classes="`grid grid4 gridStart`" :data="posts" />
 </template>
 
 <script>
@@ -7,6 +7,7 @@ import axios from "axios";
 import Grid from "~/components/Grid";
 
 export default {
+  props: ["sort"],
   components: {
     Grid
   },
@@ -19,9 +20,19 @@ export default {
     getPosts() {
       let data = null;
 
-      return axios.get(`${process.env.API}/wp-json/wp/v2/press`).then(res => {
-        this.posts = res.data;
-      });
+      if (this.sort === `alpha`) {
+        return axios
+          .get(`${process.env.API}/wp-json/wp/v2/press?orderby=title&order=asc`)
+          .then(res => {
+            this.posts = res.data;
+          });
+      } else if (this.sort === `chrono`) {
+        return axios
+          .get(`${process.env.API}/wp-json/wp/v2/press?orderby=date&order=desc`)
+          .then(res => {
+            this.posts = res.data;
+          });
+      }
     }
   },
   mounted() {
@@ -29,4 +40,3 @@ export default {
   }
 };
 </script>
-

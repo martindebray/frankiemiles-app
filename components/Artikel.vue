@@ -1,11 +1,16 @@
 <template>
   <div class="artikel">
-    <div class="artikel-head">
+    <div class="artikel-head" v-if="post.acf.hero_title">
+      <p>{{post.type}}: {{post.acf.hero_title}}</p>
       <h1 class="h1">{{post.title.rendered}}</h1>
-      <p>{{post._embedded["wp:term"][0][0].name}}</p>
     </div>
+    <div class="artikel-head" v-else>
+      <p>{{post.type}}: {{post.title.rendered}}</p>
+      <h1 class="h1">{{post.title.rendered}}</h1>
+    </div>
+
     <img v-if="post.acf.hero" :src="post.acf.hero.url" :title="post.acf.hero.title" />
-    <!-- <div v-if="post.content.rendered.length > 0" v-html="post.content.rendered"></div> -->
+
     <Modules :data="post.acf" />
   </div>
 </template>
@@ -14,27 +19,27 @@
 import Modules from "~/components/Modules/index";
 
 export default {
+  props: ["data"],
   components: {
     Modules
   },
-  async asyncData({ params, $axios }) {
-    let post = await $axios.$get(
-      `${process.env.API}/wp-json/wp/v2/posts?slug=${params.id}&_embed=1`
-    );
-
-    typeof post[0] !== `undefined` ? (post = post[0]) : (post = post);
-
-    return { post };
+  data() {
+    // console.log(this.data);
+    return {
+      post: this.data
+    };
   },
   head() {
     return {
-      title: `${this.post.title.rendered} - Journal - Frankie Miles`,
+      title: `${
+        this.post.title ? this.post.title.rendered : ``
+      } - Press - Frankie Miles`,
       meta: [
         {
           hid: "description",
           id: "description",
           name: "description",
-          content: this.post.excerpt.rendered
+          content: this.post.excerpt ? this.post.excerpt.rendered : ``
         }
       ]
     };
@@ -46,7 +51,12 @@ export default {
 .artikel {
   padding: 0 5%;
   margin-top: 130px;
-  text-align: center;
+
+  &-head {
+    p {
+      text-transform: capitalize;
+    }
+  }
 
   h1 {
     margin-bottom: 10px;
@@ -54,6 +64,7 @@ export default {
 
   img {
     margin-top: 40px;
+    width: 100%;
   }
 }
 </style>

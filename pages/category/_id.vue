@@ -1,6 +1,10 @@
 <template>
   <div class="wrap">
-    <Grid :classes="`grid grid3`" :data="bigArray"/>
+    <div class="text">
+      <h2 class="j-tit">{{cat[0].name}}</h2>
+      <div class="j-txt" v-html="cat[0].description"></div>
+    </div>
+    <Grid :classes="`grid grid3`" :data="bigArray" />
   </div>
 </template>
 
@@ -22,23 +26,14 @@ export default {
 
     let posts = await $axios
       .$get(
-        `${process.env.API}/wp-json/wp/v2/posts?categories=${catId}&_embed=1`
+        `${process.env.API}/wp-json/wp/v2/multiple-post-type?type[]=press&type[]=projects&type[]=post&_embed=1&per_page=100&categories=${catId}`
       )
-      .then(res =>
+      .then(res => {
+        console.log(res);
         res.map((k, i) => {
           bigArray.push(k);
-        })
-      );
-
-    let projects = await $axios
-      .$get(
-        `${process.env.API}/wp-json/wp/v2/projects?categories=${catId}&_embed=1`
-      )
-      .then(res =>
-        res.map((k, i) => {
-          bigArray.push(k);
-        })
-      );
+        });
+      });
 
     return { cat, bigArray };
   },

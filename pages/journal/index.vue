@@ -1,10 +1,10 @@
 <template>
   <div class="wrap">
     <div class="text">
-      <h2 class="h2">{{page.title.rendered}}</h2>
-      <div v-html="page.content.rendered"></div>
+      <h2 class="j-tit">{{page.title.rendered}}</h2>
+      <div class="j-txt" v-html="page.content.rendered"></div>
     </div>
-    <Posts/>
+    <Posts />
   </div>
 </template>
 
@@ -38,3 +38,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.wrap {
+  margin-top: 210px;
+}
+</style>

@@ -1,14 +1,25 @@
 <template>
   <footer id="footer" v-if="menu[0]">
-    <div class="sup social">
+    <div class="sup m-social">
       <div v-for="item in social.items">
-        <a :href="item.url" :title="item.title" target="_blank">{{item.title}}</a>
+        <a :href="item.url" :title="item.title" :class="item.title" target="_blank">
+          <img v-if="item.title.toLowerCase() === `youtube`" src="~/assets/img/youtube.svg" />
+          <img
+            v-else-if="item.title.toLowerCase() === `pinterest`"
+            src="~/assets/img/pinterest.svg"
+          />
+          <img v-else-if="item.title.toLowerCase() === `facebook`" src="~/assets/img/facebook.svg" />
+          <img
+            v-else-if="item.title.toLowerCase() === `instagram`"
+            src="~/assets/img/instagram.svg"
+          />
+        </a>
       </div>
     </div>
 
     <div class="sub">
       <div class="left">
-        <div v-html="menu[0].acf.left"/>
+        <div v-html="menu[0].acf.left" />
       </div>
 
       <div class="right">
@@ -18,7 +29,7 @@
           :style="`background: ${item.colors[0].color};`"
         >
           <nuxt-link :to="`/${item.link.replace(`${url}/`, ``)}`">
-            <img v-if="item.image.url" :src="item.image.url" :title="item.image.title">
+            <img v-if="item.image.url" :src="item.image.url" :title="item.image.title" />
             <div>
               <p class="p-big" :style="`color: ${item.colors[1].color};`">{{item.title}}</p>
               <p>{{item.baseline}}</p>
@@ -66,26 +77,36 @@ export default {
 <style lang="scss">
 #footer {
   .sup {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    justify-items: center;
-    align-items: center;
+    display: flex;
+    justify-content: center;
     background: $fakewhite;
     border-bottom: solid 2px #d7dde4;
 
     div {
       display: inline-block;
-      width: 100%;
       text-align: center;
-
-      &:hover {
-        background: rgba(0, 0, 0, 0.1);
-      }
 
       a {
         display: inline-block;
         padding: 44px 0;
         width: 100%;
+      }
+    }
+
+    &.m-social {
+      > div {
+        margin: 0 12px;
+
+        img {
+          height: 20px;
+          opacity: 0.4;
+        }
+
+        &:hover {
+          img {
+            opacity: 1;
+          }
+        }
       }
     }
 

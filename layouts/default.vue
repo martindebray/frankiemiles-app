@@ -12,10 +12,14 @@
 import Vue from "vue";
 import VueAnimate from "vue-animate-scroll";
 
+import retina from "retinajs";
+import VueRetina from "vue-retina";
+
 import CustomHeader from "~/components/Header";
 import CustomFooter from "~/components/Footer";
 
 Vue.use(VueAnimate);
+Vue.use(VueRetina, { retina });
 
 export default {
   components: {
@@ -60,9 +64,9 @@ main {
 }
 
 .wrap {
-  max-width: 1176px;
-  margin: 181px auto 0;
-  padding: 0 0 130px;
+  max-width: 1280px;
+  margin: 166px auto 0;
+  padding: 0 8.6% 130px;
 
   .text {
     margin-bottom: 80px;
@@ -99,7 +103,20 @@ a {
 }
 
 img {
+  object-fit: cover;
   max-width: 100%;
+}
+
+.t-serif {
+  font-family: $serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.78;
+  letter-spacing: normal;
+  text-align: center;
+  color: #747474;
 }
 
 .h1 {
@@ -176,6 +193,163 @@ p {
   }
 }
 
+.j-tit {
+  font-size: 28px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: 0.62px;
+  text-align: center;
+}
+
+.j-txt {
+  /* padding: 0 5%; */
+}
+
+.t-wrap {
+  max-width: 894px;
+  margin: 14px auto;
+}
+
+#sorting {
+  padding: 0 3.7% 130px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.8px;
+  }
+
+  .text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      margin: 0 12px;
+      float: left;
+      cursor: pointer;
+
+      font-family: $sans;
+      font-size: 16px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        background: $purewhite;
+        display: inline-block;
+        border: 1px solid $pureblack;
+        border-radius: 100%;
+        vertical-align: middle;
+        margin-right: 10px;
+        transform: translateY(-1.5px);
+      }
+
+      &:hover {
+        &::before {
+          background: $pureblack;
+        }
+      }
+    }
+  }
+
+  .alpha {
+    .alpha {
+      &::before {
+        background: $pureblack;
+      }
+    }
+  }
+
+  .chrono {
+    .chrono {
+      &::before {
+        background: $pureblack;
+      }
+    }
+  }
+}
+
+.m-social {
+  display: flex;
+
+  &:not(.sup) {
+    margin-right: 34px;
+  }
+
+  > div {
+    margin: 0 5px;
+  }
+}
+
+.g-item {
+  > a {
+    display: inline-block;
+    transition: all 0.5s;
+    opacity: 1;
+
+    h3,
+    h4 {
+      max-width: 80%;
+    }
+
+    &.loaded {
+      opacity: 1;
+    }
+  }
+
+  h4 {
+    margin: 12px 0 6px;
+    font-size: 10px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 1.2px;
+    color: #383839;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.71;
+    letter-spacing: 0.4px;
+  }
+
+  .projects,
+  .press {
+    h3 {
+      margin-top: 6px;
+      font-size: 19px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: 0.63px;
+    }
+  }
+}
 /**
  * Page Animations
  */
