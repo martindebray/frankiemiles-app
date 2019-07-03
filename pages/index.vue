@@ -334,7 +334,7 @@ export default {
 
 <style lang="scss" scoped>
 .t-wrap {
-  padding: 0 20%;
+  /* padding: 0 20%; */
   margin: 62px auto 74px;
 
   @media (max-width: $tabletDown) {
