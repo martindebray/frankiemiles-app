@@ -1,7 +1,7 @@
 <template>
   <div class="imgImg">
-    <img :src="image.url" :title="image.title" />
-    <img :src="image_two.url" :title="image_two.title" />
+    <img :src="url+image.url" :title="image.title" />
+    <img :src="url+image_two.url" :title="image_two.title" />
   </div>
 </template>
 
@@ -13,8 +13,12 @@ export default {
 
     return {
       image,
-      image_two
+      image_two,
+      url: ""
     };
+  },
+  mounted() {
+    this.url = process.env.API;
   }
 };
 </script>

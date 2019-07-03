@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="image.url" :title="image.title">
+    <img :src="url+image.url" :title="image.title" />
   </div>
 </template>
 
@@ -11,8 +11,12 @@ export default {
     const { image } = this.data;
 
     return {
-      image
+      image,
+      url: ""
     };
+  },
+  mounted() {
+    this.url = process.env.API;
   }
 };
 </script>

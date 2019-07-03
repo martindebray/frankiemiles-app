@@ -1,8 +1,8 @@
 <template>
   <div class="text_image">
-    <div v-html="text"/>
+    <div v-html="text" />
     <div>
-      <img :src="image.url" :title="image.title">
+      <img :src="url+image.url" :title="image.title" />
     </div>
   </div>
 </template>
@@ -15,8 +15,12 @@ export default {
 
     return {
       text,
-      image
+      image,
+      url: ""
     };
+  },
+  mounted() {
+    this.url = process.env.API;
   }
 };
 </script>

@@ -29,7 +29,7 @@
           :style="`background: ${item.colors[0].color};`"
         >
           <nuxt-link :to="`/${item.link.replace(`${url}/`, ``)}`">
-            <img v-if="item.image.url" :src="item.image.url" :title="item.image.title" />
+            <img v-if="item.image.url" :src="url+item.image.url" :title="item.image.title" />
             <div>
               <p class="p-big" :style="`color: ${item.colors[1].color};`">{{item.title}}</p>
               <p>{{item.baseline}}</p>

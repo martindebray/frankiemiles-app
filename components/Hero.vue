@@ -1,14 +1,14 @@
 <template>
   <div class="hero" v-if="type === `home`">
     <nuxt-link v-if="data.type === `post`" :to="`/journal/${data.slug}`">
-      <img v-if="data.acf.hero" :src="data.acf.hero.url" :title="data.acf.hero.title" v-rjs="2" />
+      <img v-if="data.acf.hero" :src="url+data.acf.hero.url" :title="data.acf.hero.title" v-rjs="2" />
       <div class="metas">
         <h1 class="h1">{{data.title.rendered}}</h1>
         <p v-if="data.type">{{data._embedded["wp:term"][0][0].name}}</p>
       </div>
     </nuxt-link>
     <nuxt-link v-else :to="`/${data.type}/${data.slug}`">
-      <img v-if="data.acf.hero" :src="data.acf.hero.url" :title="data.acf.hero.title" v-rjs="2" />
+      <img v-if="data.acf.hero" :src="url+data.acf.hero.url" :title="data.acf.hero.title" v-rjs="2" />
       <div class="metas">
         <h1 class="h1">{{data.title.rendered}}</h1>
         <p v-if="data.type">JOURNAL</p>
@@ -16,7 +16,7 @@
     </nuxt-link>
   </div>
   <div class="hero" v-else-if="type === `normal`">
-    <img v-if="data[0].image" :src="data[0].image.url" :title="data[0].image.title" v-rjs="2" />
+    <img v-if="data[0].image" :src="url+data[0].image.url" :title="data[0].image.title" v-rjs="2" />
     <div class="metas center">
       <h1 class="h1">{{data[0].headline}}</h1>
       <p v-if="data.type">{{data.type.toUpperCase()}}</p>
@@ -27,8 +27,14 @@
 <script>
 export default {
   props: ["data", "type"],
+  data() {
+    return {
+      url: ""
+    };
+  },
   mounted() {
     // console.log(this.data);
+    this.url = process.env.API;
   }
 };
 </script>

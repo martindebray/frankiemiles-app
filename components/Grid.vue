@@ -9,7 +9,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
+            :src="url+item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -26,7 +26,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
+            :src="url+item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -41,7 +41,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
+            :src="url+item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -52,7 +52,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
+            :src="url+item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -65,7 +65,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
+            :src="url+item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -83,7 +83,8 @@ export default {
   data() {
     return {
       num: 0,
-      isLoaded: false
+      isLoaded: false,
+      url: ""
     };
   },
   props: ["data", "classes", "type"],
@@ -98,6 +99,7 @@ export default {
   },
   mounted() {
     // console.log("this", this);
+    this.url = process.env.API;
   }
 };
 </script>
