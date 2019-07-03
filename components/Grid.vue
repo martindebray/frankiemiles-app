@@ -9,7 +9,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="url+item.acf.hero.url"
+            :src="item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -26,7 +26,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="url+item.acf.hero.url"
+            :src="item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -41,7 +41,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="url+item.acf.hero.url"
+            :src="item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -52,7 +52,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="url+item.acf.hero.url"
+            :src="item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -65,7 +65,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="url+item.acf.hero.url"
+            :src="item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -149,6 +149,16 @@ export default {
 
   @media (max-width: $tabletDown) {
     grid-template-columns: 1fr !important;
+  }
+}
+
+#projects,
+#press {
+  @media (max-width: $tabletDown) {
+    h4,
+    h3 {
+      padding: 0 3.7%;
+    }
   }
 }
 </style>

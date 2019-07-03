@@ -67,5 +67,9 @@ export default {
 <style lang="scss" scoped>
 .cta {
   margin-top: 100px;
+
+  @media (max-width: $tabletDown) {
+    margin-top: 40px;
+  }
 }
 </style>

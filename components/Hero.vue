@@ -1,22 +1,23 @@
 <template>
   <div class="hero" v-if="type === `home`">
     <nuxt-link v-if="data.type === `post`" :to="`/journal/${data.slug}`">
-      <img v-if="data.acf.hero" :src="url+data.acf.hero.url" :title="data.acf.hero.title" v-rjs="2" />
+      <img v-if="data.acf.hero" :src="data.acf.hero.url" :title="data.acf.hero.title" v-rjs="2" />
       <div class="metas">
         <h1 class="h1">{{data.title.rendered}}</h1>
         <p v-if="data.type">{{data._embedded["wp:term"][0][0].name}}</p>
       </div>
     </nuxt-link>
     <nuxt-link v-else :to="`/${data.type}/${data.slug}`">
-      <img v-if="data.acf.hero" :src="url+data.acf.hero.url" :title="data.acf.hero.title" v-rjs="2" />
+      <img v-if="data.acf.hero" :src="data.acf.hero.url" :title="data.acf.hero.title" v-rjs="2" />
       <div class="metas">
         <h1 class="h1">{{data.title.rendered}}</h1>
-        <p v-if="data.type">JOURNAL</p>
+        <p v-if="data.type === `projects`">Comissioned Project</p>
+        <p v-else>{{data.type}}</p>
       </div>
     </nuxt-link>
   </div>
   <div class="hero" v-else-if="type === `normal`">
-    <img v-if="data[0].image" :src="url+data[0].image.url" :title="data[0].image.title" v-rjs="2" />
+    <img v-if="data[0].image" :src="data[0].image.url" :title="data[0].image.title" v-rjs="2" />
     <div class="metas center">
       <h1 class="h1">{{data[0].headline}}</h1>
       <p v-if="data.type">{{data.type.toUpperCase()}}</p>
@@ -50,6 +51,19 @@ export default {
   a {
     display: block;
     height: 100%;
+
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.15);
+      transition: 0.2s ease;
+    }
   }
 
   img {
@@ -58,11 +72,12 @@ export default {
     object-fit: cover;
     object-position: center;
     transform: scale(1);
-    transition: 60s ease-in;
+    transition: 30s ease-in;
   }
 
   .metas {
     position: absolute;
+    z-index: 1;
     bottom: 7.4%;
     left: 5.6%;
     max-width: 65%;
@@ -83,6 +98,8 @@ export default {
       line-height: normal;
       letter-spacing: 1.2px;
       color: #ffffff;
+
+      text-transform: uppercase;
     }
   }
 
@@ -101,7 +118,7 @@ export default {
       p {
         margin-top: 10px;
 
-        font-size: 18px;
+        font-size: 10px;
       }
     }
   }

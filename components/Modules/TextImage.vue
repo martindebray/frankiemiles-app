@@ -2,7 +2,7 @@
   <div class="text_image">
     <div v-html="text" />
     <div>
-      <img :src="url+image.url" :title="image.title" />
+      <img :src="image.url" :title="image.title" />
     </div>
   </div>
 </template>
@@ -30,6 +30,11 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+
+  @media (max-width: $tabletDown) {
+    grid-template-columns: 1fr;
+    grid-gap: 48px;
+  }
 }
 </style>
 

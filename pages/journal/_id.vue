@@ -1,21 +1,29 @@
 <template>
-  <div class="artikel">
+  <div class="artikel artikel-j">
     <div class="artikel-head">
       <h1 class="h1">{{post.title.rendered}}</h1>
-      <p>{{post._embedded["wp:term"][0][0].name}}</p>
+      <p class="t-cat">{{post._embedded["wp:term"][0][0].name}}</p>
     </div>
-    <img v-if="post.acf.hero" :src="post.acf.hero.url" :title="post.acf.hero.title" />
+    <figure>
+      <img v-if="post.acf.hero" :src="post.acf.hero.url" :title="post.acf.hero.title" />
+      <figcaption v-if="post.acf.hero.caption">{{post.acf.hero.caption}}</figcaption>
+    </figure>
     <!-- <div v-if="post.content.rendered.length > 0" v-html="post.content.rendered"></div> -->
     <Modules :data="post.acf" />
+
+    <br />
+    <UMayLike v-if="post._embedded['wp:term'][0][0].id" :data="post._embedded['wp:term'][0][0].id" />
   </div>
 </template>
 
 <script>
 import Modules from "~/components/Modules/index";
+import UMayLike from "~/components/UMayLike";
 
 export default {
   components: {
-    Modules
+    Modules,
+    UMayLike
   },
   async asyncData({ params, $axios }) {
     let post = await $axios.$get(
@@ -42,18 +50,23 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.artikel {
+<style lang="scss">
+.artikel-j {
   padding: 0 5%;
-  margin-top: 130px;
-  text-align: center;
+  margin-top: 150px;
 
   h1 {
-    margin-bottom: 10px;
+    padding: 0 9.1%;
   }
 
-  img {
-    margin-top: 40px;
+  figure {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    margin: 40px auto;
   }
 }
 </style>

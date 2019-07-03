@@ -34,6 +34,9 @@ export default {
     TextImage,
     Logos,
     CTA
+  },
+  mounted() {
+    console.log(this.data.modules);
   }
 };
 </script>

@@ -29,7 +29,6 @@ export default {
         `${process.env.API}/wp-json/wp/v2/multiple-post-type?type[]=press&type[]=projects&type[]=post&_embed=1&per_page=100&categories=${catId}`
       )
       .then(res => {
-        console.log(res);
         res.map((k, i) => {
           bigArray.push(k);
         });

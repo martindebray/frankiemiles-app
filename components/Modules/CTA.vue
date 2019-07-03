@@ -17,21 +17,21 @@ export default {
 
 <style lang="scss">
 .cta {
-  margin: 0 auto;
-  max-width: 110px;
+  margin: 0 auto 40px;
   text-align: center;
 
   &.hidden {
     opacity: 0;
     transition: 0.3s ease;
     pointer-events: none;
+    display: none;
   }
 
   a {
     display: inline-block;
-    padding: 16px 0;
+    padding: 6px 22px;
     width: 100%;
-    max-width: 110px;
+    width: max-content;
     background: $royalblue;
     border-radius: 25px;
     text-align: center;
@@ -50,7 +50,6 @@ export default {
     letter-spacing: 0.8px;
 
     color: white;
-    padding: 0.5em 1em;
     outline: none;
     border: none;
     background-color: hsl(236, 32%, 26%);

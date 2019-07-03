@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <img :src="url+image.url" :title="image.title" />
-  </div>
+  <figure>
+    <img :src="image.url" :title="image.title" />
+    <figcaption>{{image.caption}}</figcaption>
+  </figure>
 </template>
 
 <script>

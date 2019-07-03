@@ -8,10 +8,16 @@
       <p>{{post.type}}: {{post.title.rendered}}</p>
       <h1 class="h1">{{post.title.rendered}}</h1>
     </div>
-
-    <img v-if="post.acf.hero" :src="post.acf.hero.url" :title="post.acf.hero.title" />
+    <figure class="artikel-hero">
+      <img v-if="post.acf.hero" :src="post.acf.hero.url" :title="post.acf.hero.title" />
+      <figcaption v-if="post.acf.hero.caption">{{post.acf.hero.caption}}</figcaption>
+    </figure>
 
     <Modules :data="post.acf" />
+
+    <p class="cta">
+      <nuxt-link :to="`/${post.type}`">View all {{post.type}}</nuxt-link>
+    </p>
   </div>
 </template>
 
@@ -47,14 +53,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .artikel {
   padding: 0 5%;
   margin-top: 130px;
 
   &-head {
     p {
-      text-transform: capitalize;
+      &::first-letter {
+        text-transform: capitalize;
+      }
     }
   }
 
@@ -62,9 +70,19 @@ export default {
     margin-bottom: 10px;
   }
 
-  img {
-    margin-top: 40px;
-    width: 100%;
+  figure {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    margin: 40px auto;
+    width: 43%;
+  }
+
+  &-hero {
+    width: 100% !important;
   }
 }
 </style>

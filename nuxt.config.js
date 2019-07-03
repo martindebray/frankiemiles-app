@@ -86,36 +86,28 @@ export default {
       let data = [];
 
       return axios
-        .get(
-          `https://4b2e0ce8-a511-11e8-b072-36d63035d715.app.getshifter.io:58642/wp-json/wp/v2/pages`
-        )
+        .get(`http://frankiemiles.api.test/wp-json/wp/v2/pages`)
         .then(res => {
           res.data.map(page => {
             data.push(page.slug);
           });
 
           return axios
-            .get(
-              `https://4b2e0ce8-a511-11e8-b072-36d63035d715.app.getshifter.io:58642/wp-json/wp/v2/posts`
-            )
+            .get(`http://frankiemiles.api.test/wp-json/wp/v2/posts`)
             .then(res => {
               res.data.map(post => {
                 data.push(`journal/${post.slug}`);
               });
 
               return axios
-                .get(
-                  `https://4b2e0ce8-a511-11e8-b072-36d63035d715.app.getshifter.io:58642/wp-json/wp/v2/press`
-                )
+                .get(`http://frankiemiles.api.test/wp-json/wp/v2/press`)
                 .then(res => {
                   res.data.map(post => {
                     data.push(`press/${post.slug}`);
                   });
 
                   return axios
-                    .get(
-                      `https://4b2e0ce8-a511-11e8-b072-36d63035d715.app.getshifter.io:58642/wp-json/wp/v2/projects`
-                    )
+                    .get(`http://frankiemiles.api.test/wp-json/wp/v2/projects`)
                     .then(res => {
                       res.data.map(post => {
                         data.push(`projects/${post.slug}`);

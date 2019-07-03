@@ -2,7 +2,7 @@
   <div class="logos">
     <div v-for="item in gallery">
       <!-- {{gallery}} -->
-      <img :src="url+item.url" :title="item.title" />
+      <img :src="item.url" :title="item.title" />
     </div>
   </div>
 </template>
@@ -35,6 +35,11 @@ export default {
   img {
     width: 80%;
     margin: 0 auto;
+  }
+
+  @media (max-width: $tabletDown) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 36px 24px;
   }
 }
 </style>

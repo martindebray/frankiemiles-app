@@ -19,8 +19,8 @@
               fill-rule="nonzero"
             >
               <g id="Group" transform="translate(0.000000, 4.000000)">
-                <rect id="Rectangle" x="0" y="0" width="16" height="1.5" />
-                <rect id="Rectangle" x="0" y="4" width="16" height="1.5" />
+                <rect id="rect1" x="0" y="0" width="16" height="1.5" />
+                <rect id="rect2" x="0" y="4" width="16" height="1.5" />
               </g>
             </g>
           </g>
@@ -161,15 +161,71 @@
     </div>
 
     <nav id="menu">
-      <div v-for="item in menu.items">
+      <div v-for="item in menu.items" @click="triggerMenuMobile">
         <nuxt-link
           exact
           :to="`/${item.url.replace(`${url}/`, ``)}`"
-          class="menu-link"
+          :class="`menu-link ${item.title === `Journal` ? `menu-link-parent` : ``}`"
         >{{ item.title }}</nuxt-link>
 
         <div v-if="item.title === `Journal`">
           <div class="menu-sub">
+            <div class="menu-sub-header">
+              <div @click="triggerMenuMobile" id="menu-sub-back">
+                <svg
+                  width="19px"
+                  height="14px"
+                  viewBox="0 0 19 14"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <g id="Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      id="0.0-Menu-Kategorie-(S)"
+                      transform="translate(-16.000000, -16.000000)"
+                      fill="#1E201D"
+                      fill-rule="nonzero"
+                    >
+                      <g id="left-arrow" transform="translate(16.000000, 16.000000)">
+                        <path
+                          d="M5.93693393,0.210559595 C6.19351003,-0.0701865318 6.59744402,-0.0701865318 6.85402011,0.210559595 C7.1019281,0.481821056 7.1019281,0.933291179 6.85402011,1.20392033 L2.20386731,6.29212773 L17.5487359,6.29212773 C17.90644,6.29212773 18.2,6.60322479 18.2,6.99462536 C18.2,7.38602592 17.90644,7.70723996 17.5487359,7.70723996 L2.20386731,7.70723996 L6.85402011,12.7859627 C7.1019281,13.0667088 7.1019281,13.5188113 6.85402011,13.7894404 C6.59744402,14.0701865 6.19351003,14.0701865 5.93693393,13.7894404 L0.185930988,7.49668037 C-0.0619769962,7.22541891 -0.0619769962,6.77394878 0.185930988,6.50331963 L5.93693393,0.210559595 Z"
+                          id="Shape"
+                        />
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <span>Journal</span>
+              <div>
+                <svg
+                  id="close-menu"
+                  width="14px"
+                  height="14px"
+                  viewBox="0 0 14 14"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <g id="Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g
+                      id="0.0-Menu-Kategorie-(S)"
+                      transform="translate(-290.000000, -16.000000)"
+                      fill="#000000"
+                      fill-rule="nonzero"
+                    >
+                      <g id="cross-(1)" transform="translate(290.000000, 16.000000)">
+                        <polygon
+                          id="Shape"
+                          points="14 0.811425783 13.1883889 0 7 6.18878051 0.811588235 0 0 0.811425783 6.18841176 7.00025213 0 13.1885971 0.811588235 14 7 7.81165499 13.1883889 14 14 13.1885971 7.81115359 7.00025213"
+                        />
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
             <div>
               <nuxt-link to="/journal" class="menu-link--sub">Show all</nuxt-link>
             </div>
@@ -196,6 +252,7 @@ export default {
       menu: [],
       social: [],
       menuActive: false,
+      menuMobileActive: false,
       menuTheme: "dark",
       categories: [],
       url: " "
@@ -221,6 +278,28 @@ export default {
     },
     triggerMenu() {
       this.menuActive = !this.menuActive;
+    },
+    triggerMenuMobile(event) {
+      console.log(event.target);
+      if (event.target.children.length > 1) {
+        this.menuMobileActive = !this.menuMobileActive;
+
+        if (this.menuMobileActive === true) {
+          event.target.classList.add("triggered");
+        }
+      } else {
+        if (
+          event.target.id === "menu-sub-back" &&
+          document.querySelector(".triggered")
+        ) {
+          this.menuMobileActive = !this.menuMobileActive;
+          document.querySelector(".triggered").classList.remove("triggered");
+        } else if (event.target.id === "close-menu") {
+          this.triggerMenu();
+          this.menuMobileActive = !this.menuMobileActive;
+          document.querySelector(".triggered").classList.remove("triggered");
+        }
+      }
     }
   },
   mounted() {
@@ -243,22 +322,56 @@ export default {
   flex-flow: column;
   align-items: center;
   padding-bottom: 76px;
-  background: rgba(255, 255, 255, 0);
-  transition: background 0.1s ease;
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    background: rgba(255, 255, 255, 1);
+    height: 0;
+    transition: height 0.1s ease;
+  }
 
   .sup {
     max-width: 1280px;
-    padding: 0 3.9%;
+    padding: 0 5.5%;
     display: flex;
     flex-flow: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-top: 32px;
+    margin-top: 44px;
     margin-bottom: 32px;
 
     .right {
       display: flex;
+    }
+  }
+
+  @media (max-width: $tabletDown) {
+    .sup {
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+
+    .m-social {
+      display: none;
+    }
+
+    &.trigger {
+      .m-social {
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        bottom: 40px;
+        left: 0;
+        z-index: 99;
+        width: 100%;
+      }
     }
   }
 }
@@ -279,6 +392,18 @@ export default {
   .icon {
     display: inline-block;
     margin-right: 8px;
+    width: 16px;
+    height: 16px;
+
+    rect {
+      transition: 0.2s ease;
+    }
+  }
+
+  @media (max-width: $tabletDown) {
+    span {
+      display: none;
+    }
   }
 }
 
@@ -290,6 +415,10 @@ export default {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+
+  @media (max-width: $tabletDown) {
+    font-size: 28px;
+  }
 }
 
 #menu {
@@ -315,11 +444,13 @@ export default {
     text-transform: uppercase;
   }
 
-  a {
-    &:hover,
-    &.nuxt-link-active {
-      ~ div > .menu-sub {
-        height: 60px;
+  @media (min-width: $tabletUp) {
+    a {
+      &:hover,
+      &.nuxt-link-active {
+        ~ div > .menu-sub {
+          height: 60px;
+        }
       }
     }
   }
@@ -346,25 +477,124 @@ export default {
     transition: all 0.1s ease;
 
     &:hover {
-      height: 60px;
+      @media (min-width: $tabletUp) {
+        height: 60px;
+      }
     }
   }
 
   .menu-link--sub {
   }
+
+  .menu-sub-header {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    right: 5%;
+    display: flex;
+    justify-content: space-between;
+
+    display: none;
+  }
+
+  #menu-sub-back {
+    svg {
+      pointer-events: none;
+    }
+  }
+
+  @media (max-width: $tabletDown) {
+    .menu-link-parent {
+      pointer-events: none;
+    }
+
+    .menu-sub {
+      left: 100%;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      position: fixed;
+      transform: translateY(0);
+      padding-top: 0;
+      z-index: 1;
+      background: white;
+      height: 100%;
+      transition: 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .menu-sub-header {
+      display: flex;
+    }
+
+    #menu-sub-back {
+    }
+
+    .triggered {
+      z-index: 10;
+
+      .menu-sub {
+        left: 0;
+
+        > div {
+          margin-right: 0;
+          margin-bottom: 24px;
+        }
+      }
+    }
+  }
 }
 
 #header.trigger {
-  background: rgba(255, 255, 255, 1);
+  &::before {
+    /* background: rgba(255, 255, 255, 1); */
+    height: 176px;
+  }
 
   #burger {
     .icon {
-      transform: rotate(90deg);
+      /* transform: rotate(90deg); */
+
+      rect {
+        transform-origin: center;
+
+        &#rect1 {
+          transform: rotate(45deg) translate(0px, 1px);
+        }
+
+        &#rect2 {
+          transform: rotate(-45deg) translate(1px, -2px);
+        }
+      }
     }
   }
 
   #menu {
     display: flex;
+  }
+
+  @media (max-width: $tabletDown) {
+    #menu {
+      position: fixed;
+      top: 80px;
+      height: calc(100vh - 80px);
+      background: white;
+      flex-direction: column;
+      width: 100%;
+      padding: 0 22px;
+
+      > div {
+        padding: 12.5px 0;
+        margin-right: 0;
+        border-bottom: 1px solid #c8c7cc;
+      }
+
+      a {
+        opacity: 1;
+      }
+    }
   }
 }
 
@@ -412,6 +642,38 @@ export default {
         fill: $pureblack !important;
       }
     }
+
+    .facebook {
+      &:hover {
+        svg path {
+          fill: #3b5998 !important;
+        }
+      }
+    }
+
+    .instagram {
+      &:hover {
+        svg path {
+          fill: #e1306c !important;
+        }
+      }
+    }
+
+    .youtube {
+      &:hover {
+        svg path {
+          fill: #ff0000 !important;
+        }
+      }
+    }
+
+    .pinterest {
+      &:hover {
+        svg path {
+          fill: #bd081c !important;
+        }
+      }
+    }
   }
 }
 
@@ -454,10 +716,43 @@ export default {
       g,
       path {
         fill: $pureblack !important;
+        transition: 0.1s ease;
       }
 
       polygon {
         fill: $purewhite !important;
+      }
+    }
+
+    .facebook {
+      &:hover {
+        svg path {
+          fill: #3b5998 !important;
+        }
+      }
+    }
+
+    .instagram {
+      &:hover {
+        svg path {
+          fill: #e1306c !important;
+        }
+      }
+    }
+
+    .youtube {
+      &:hover {
+        svg path {
+          fill: #ff0000 !important;
+        }
+      }
+    }
+
+    .pinterest {
+      &:hover {
+        svg path {
+          fill: #bd081c !important;
+        }
       }
     }
   }

@@ -24,7 +24,7 @@
           <lazy-component @show="handler">
             <img
               v-if="item.acf && item.acf.hero"
-              :src="url+item.acf.hero.url"
+              :src="item.acf.hero.url"
               :title="item.acf.hero.title"
               v-rjs="2"
             />
@@ -42,12 +42,12 @@
           <lazy-component @show="handler">
             <img
               v-if="item.acf && item.acf.hero"
-              :src="url+item.acf.hero.url"
+              :src="item.acf.hero.url"
               :title="item.acf.hero.title"
               v-rjs="2"
             />
           </lazy-component>
-          <h4 v-if="item.type === `project`">Comissioned Projects</h4>
+          <h4 v-if="item.type === `projects`">Comissioned Projects</h4>
           <h4 v-else>{{item.type}}</h4>
           <h3 v-if="item.title">{{item.title.rendered}}</h3>
         </nuxt-link>
@@ -61,19 +61,79 @@
         <div>
           <nuxt-link v-if="i.type === `post`" :to="`/journal/${i.slug}`">
             <lazy-component @show="handler">
-              <img :src="url+i.acf.hero.url" v-rjs="2" />
+              <img :src="i.acf.hero.url" v-rjs="2" />
               <h3>{{i._embedded["wp:term"][0][0].name}}</h3>
               <h2>{{i.title.rendered}}</h2>
-              <div v-if="i.excerpt" v-html="i.excerpt.rendered" />
+              <div v-if="i.excerpt" class="t-excerpt" v-html="i.excerpt.rendered" />
+              <span class="arrow">
+                <svg
+                  width="17px"
+                  height="3px"
+                  viewBox="0 0 17 3"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Builder/Preview-Text--2" transform="translate(0.000000, -167.000000)">
+                      <g id="Group-5">
+                        <g id="Group" transform="translate(0.000400, 167.008000)">
+                          <path
+                            d="M0.4996,1.4963 L14.291,1.4963"
+                            id="Stroke-1"
+                            stroke="#464646"
+                            stroke-width="0.6"
+                          />
+                          <polygon
+                            id="Fill-3"
+                            fill="#464646"
+                            points="13.8525 2.992 16.4435 1.496 13.8525 -1.9095836e-14"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>
             </lazy-component>
           </nuxt-link>
           <nuxt-link v-else :to="`/${i.type}/${i.slug}`">
             <lazy-component @show="handler">
-              <img :src="url+i.acf.hero.url" v-rjs="2" />
-              <h3 v-if="i.type === `project`">Comissioned Projects</h3>
+              <img :src="i.acf.hero.url" v-rjs="2" />
+              <h3 v-if="i.type === `projects`">Comissioned Projects</h3>
               <h3 v-else>Press</h3>
               <h2>{{i.title.rendered}}</h2>
-              <div v-if="i.excerpt" v-html="i.excerpt.rendered" />
+              <div v-if="i.excerpt" class="t-excerpt" v-html="i.excerpt.rendered" />
+              <span class="arrow">
+                <svg
+                  width="17px"
+                  height="3px"
+                  viewBox="0 0 17 3"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Builder/Preview-Text--2" transform="translate(0.000000, -167.000000)">
+                      <g id="Group-5">
+                        <g id="Group" transform="translate(0.000400, 167.008000)">
+                          <path
+                            d="M0.4996,1.4963 L14.291,1.4963"
+                            id="Stroke-1"
+                            stroke="#464646"
+                            stroke-width="0.6"
+                          />
+                          <polygon
+                            id="Fill-3"
+                            fill="#464646"
+                            points="13.8525 2.992 16.4435 1.496 13.8525 -1.9095836e-14"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </span>
             </lazy-component>
           </nuxt-link>
         </div>
@@ -274,12 +334,23 @@ export default {
 
 <style lang="scss" scoped>
 .t-wrap {
+  padding: 0 20%;
   margin: 62px auto 74px;
+
+  @media (max-width: $tabletDown) {
+    padding: 0 10%;
+    margin: 24px auto 36px;
+  }
 }
 
 .cta {
   margin-top: 90px;
   margin-bottom: 90px;
+
+  @media (max-width: $tabletDown) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 }
 </style>
 
@@ -293,11 +364,42 @@ export default {
   /* max-width: 1280px; */
 
   > div {
-    width: calc(100% / 3);
-    padding: 0 12.5px;
+    width: calc(calc(100% / 3) - 16px);
+    /* padding: 0 12.5px; */
 
     img {
+      width: 100%;
       height: auto;
+
+      transition: all 0.5s;
+      transform-origin: bottom center;
+    }
+
+    &:nth-child(2) {
+      margin-right: 24px;
+      margin-left: 24px;
+    }
+
+    &:hover {
+      img {
+        transform: translateY(-8px);
+      }
+    }
+  }
+
+  @media (max-width: $tablet) {
+    padding: 0 4.5%;
+  }
+
+  @media (max-width: $tabletDown) {
+    > div {
+      width: 100%;
+      margin-top: 44px;
+
+      &:nth-child(2) {
+        margin-right: 0;
+        margin-left: 0;
+      }
     }
   }
 }
@@ -312,14 +414,23 @@ export default {
   text-align: center;
 
   > div {
-    width: calc(100% / 2);
-    padding: 0 24px;
+    width: calc(calc(100% / 2) - 12px);
     margin-top: 48px;
     text-align: left;
+
+    &:nth-child(odd) {
+      margin-right: 12px;
+    }
+
+    &:nth-child(even) {
+      margin-left: 12px;
+    }
 
     img {
       width: 100%;
       height: auto;
+      transition: all 0.5s;
+      transform-origin: bottom center;
     }
 
     h3 {
@@ -331,7 +442,10 @@ export default {
       letter-spacing: 1.2px;
       color: #383839;
       margin-top: 24px;
-      max-width: 80%;
+      @media (min-width: $tablet) {
+        max-width: 80%;
+      }
+      text-transform: uppercase;
     }
 
     h2 {
@@ -343,7 +457,9 @@ export default {
       letter-spacing: 0.8px;
       color: #000000;
       margin: 15px 0 18px;
-      max-width: 80%;
+      @media (min-width: $tablet) {
+        max-width: 80%;
+      }
     }
 
     div {
@@ -355,8 +471,40 @@ export default {
         line-height: 1.71;
         letter-spacing: normal;
         color: #787878;
-        max-width: 80%;
+        @media (min-width: $tablet) {
+          max-width: 80%;
+        }
       }
+    }
+
+    .arrow {
+      display: inline-block;
+      margin-top: 24px;
+      transition: all 0.5s;
+      transform-origin: left center;
+    }
+
+    &:hover {
+      img {
+        transform: translateY(-8px);
+      }
+
+      .arrow {
+        transform: scaleX(2);
+      }
+    }
+  }
+
+  @media (max-width: $tablet) {
+    padding: 0 4.5%;
+  }
+
+  @media (max-width: $tabletDown) {
+    > div {
+      width: 100%;
+      margin-top: 48px;
+      margin-right: 0 !important;
+      margin-left: 0 !important;
     }
   }
 }
@@ -392,6 +540,22 @@ export default {
     a {
       &::after {
         background: rgba(0, 0, 0, 0);
+      }
+    }
+  }
+
+  @media (max-width: $tabletDown) {
+    a {
+      .metas {
+        /* position: relative; */
+        bottom: initial;
+        left: initial;
+        top: 7.4%;
+        right: 5.6%;
+        left: 5.6%;
+        z-index: 1;
+        text-align: center;
+        max-width: 558px;
       }
     }
   }

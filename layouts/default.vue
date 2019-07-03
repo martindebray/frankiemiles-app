@@ -87,6 +87,15 @@ main {
       color: #747474;
     }
   }
+
+  @media (max-width: $tabletDown) {
+    padding: 0 8.6% 40px;
+    margin: 110px auto 0;
+
+    .text {
+      margin-bottom: 45px;
+    }
+  }
 }
 
 *,
@@ -107,6 +116,18 @@ img {
   max-width: 100%;
 }
 
+.t-cat {
+  font-size: 10px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1.2px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 18px;
+}
+
 .t-serif {
   font-family: $serif;
   font-size: 18px;
@@ -121,7 +142,7 @@ img {
 
 .h1 {
   font-size: 68px;
-  font-weight: 900;
+  font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.06;
@@ -129,7 +150,7 @@ img {
   margin-bottom: 16px;
 
   @media (max-width: $mediumDown) {
-    font-size: 48px;
+    font-size: 32px;
   }
 }
 
@@ -143,14 +164,14 @@ img {
   text-align: center;
 
   @media (max-width: $mediumDown) {
-    font-size: 36px;
+    font-size: 32px;
   }
 }
 
 .text_l p,
 .p-big {
   font-size: 28px;
-  font-weight: 500;
+  font-weight: 300;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.43;
@@ -191,6 +212,16 @@ p {
   @media (max-width: $mediumDown) {
     font-size: 18px;
   }
+}
+
+figcaption {
+  font-size: 10px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.4;
+  letter-spacing: 0.4px;
+  color: #787878;
 }
 
 .j-tit {
@@ -283,6 +314,32 @@ p {
     .chrono {
       &::before {
         background: $pureblack;
+      }
+    }
+  }
+
+  @media (max-width: $tabletDown) {
+    padding: 0 0 80px;
+
+    .text {
+      flex-direction: column;
+
+      > div {
+        width: min-content;
+      }
+    }
+
+    ul {
+      margin-top: 24px;
+      padding-left: 0;
+      display: flex;
+
+      li {
+        width: max-content;
+
+        &:last-child {
+          margin-right: 12px;
+        }
       }
     }
   }

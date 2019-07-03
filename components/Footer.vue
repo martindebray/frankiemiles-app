@@ -25,14 +25,16 @@
       <div class="right">
         <div
           v-for="item in menu[0].acf.right"
-          class="item"
           :style="`background: ${item.colors[0].color};`"
+          :class="`${item.image ? `imaged` : ``} item`"
         >
           <nuxt-link :to="`/${item.link.replace(`${url}/`, ``)}`">
-            <img v-if="item.image.url" :src="url+item.image.url" :title="item.image.title" />
+            <img v-if="item.image.url" :src="item.image.url" :title="item.image.title" />
             <div>
-              <p class="p-big" :style="`color: ${item.colors[1].color};`">{{item.title}}</p>
-              <p>{{item.baseline}}</p>
+              <div>
+                <p class="p-big" :style="`color: ${item.colors[1].color};`">{{item.title}}</p>
+                <p>{{item.baseline}}</p>
+              </div>
             </div>
           </nuxt-link>
         </div>
@@ -199,13 +201,19 @@ export default {
           position: absolute;
           top: 50%;
           left: 50%;
-          transform: translate(-50%, -15%);
+          transform: translate(-50%, -50%);
           color: white;
           text-align: center;
           height: 50%;
           text-align: center;
           display: grid;
           align-content: space-between;
+        }
+
+        &:not(.imaged) {
+          a > div {
+            height: 100%;
+          }
         }
 
         img {
@@ -226,14 +234,36 @@ export default {
     }
 
     @media (max-width: $tabletDown) {
-      grid-template-columns: 1fr;
+      grid-template-columns: 100%;
 
       .left {
-        padding: 48px;
+        padding: 30px 3.75%;
         justify-content: flex-start;
 
         > div > ul {
           grid-template-columns: 1fr 1fr;
+          grid-gap: 24px 48px;
+        }
+      }
+
+      .right {
+        grid-template-columns: 1fr;
+
+        div:not(.imaged) {
+          a > div {
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);
+            height: 100%;
+
+            &::before {
+              content: "";
+              position: relative;
+              padding-top: 100%;
+              display: block;
+            }
+          }
         }
       }
     }
