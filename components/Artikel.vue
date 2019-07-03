@@ -9,7 +9,7 @@
       <h1 class="h1">{{post.title.rendered}}</h1>
     </div>
     <figure class="artikel-hero">
-      <img v-if="post.acf.hero" :src="post.acf.hero.url" :title="post.acf.hero.title" />
+      <img v-if="post.acf.hero" :src="url+post.acf.hero.url" :title="post.acf.hero.title" />
       <figcaption v-if="post.acf.hero.caption">{{post.acf.hero.caption}}</figcaption>
     </figure>
 
@@ -32,8 +32,12 @@ export default {
   data() {
     // console.log(this.data);
     return {
-      post: this.data
+      post: this.data,
+      url: ""
     };
+  },
+  mounted() {
+    this.url = process.env.API;
   },
   head() {
     return {

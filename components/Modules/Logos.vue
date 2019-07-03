@@ -2,7 +2,7 @@
   <div class="logos">
     <div v-for="item in gallery">
       <!-- {{gallery}} -->
-      <img :src="item.url" :title="item.title" />
+      <img :src="url+item.url" :title="item.title" />
     </div>
   </div>
 </template>

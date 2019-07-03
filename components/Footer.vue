@@ -29,7 +29,7 @@
           :class="`${item.image ? `imaged` : ``} item`"
         >
           <nuxt-link :to="`/${item.link.replace(`${url}/`, ``)}`">
-            <img v-if="item.image.url" :src="item.image.url" :title="item.image.title" />
+            <img v-if="item.image.url" :src="url+item.image.url" :title="item.image.title" />
             <div>
               <div>
                 <p class="p-big" :style="`color: ${item.colors[1].color};`">{{item.title}}</p>

@@ -1,11 +1,11 @@
 <template>
   <div class="imgImg">
     <figure>
-      <img :src="image.url" :title="image.title" />
+      <img :src="url+image.url" :title="image.title" />
       <figcaption v-if="image.caption">{{image.caption}}</figcaption>
     </figure>
     <figure>
-      <img :src="image_two.url" :title="image_two.title" />
+      <img :src="url+image_two.url" :title="image_two.title" />
       <figcaption v-if="image_two.caption">{{image_two.caption}}</figcaption>
     </figure>
   </div>

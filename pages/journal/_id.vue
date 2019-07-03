@@ -5,7 +5,7 @@
       <p class="t-cat">{{post._embedded["wp:term"][0][0].name}}</p>
     </div>
     <figure>
-      <img v-if="post.acf.hero" :src="post.acf.hero.url" :title="post.acf.hero.title" />
+      <img v-if="post.acf.hero" :src="url+post.acf.hero.url" :title="post.acf.hero.title" />
       <figcaption v-if="post.acf.hero.caption">{{post.acf.hero.caption}}</figcaption>
     </figure>
     <!-- <div v-if="post.content.rendered.length > 0" v-html="post.content.rendered"></div> -->
@@ -25,6 +25,11 @@ export default {
     Modules,
     UMayLike
   },
+  data() {
+    return {
+      url: ""
+    };
+  },
   async asyncData({ params, $axios }) {
     let post = await $axios.$get(
       `${process.env.API}/wp-json/wp/v2/posts?slug=${params.id}&_embed=1`
@@ -33,6 +38,9 @@ export default {
     typeof post[0] !== `undefined` ? (post = post[0]) : (post = post);
 
     return { post };
+  },
+  mounted() {
+    this.url = process.env.API;
   },
   head() {
     return {

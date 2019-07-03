@@ -9,7 +9,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
+            :src="url+item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -26,7 +26,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
+            :src="url+item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -41,7 +41,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
+            :src="url+item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -52,7 +52,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
+            :src="url+item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
@@ -65,7 +65,7 @@
         <lazy-component @show="handler">
           <img
             v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
+            :src="url+item.acf.hero.url"
             :title="item.acf.hero.title"
           />
         </lazy-component>
