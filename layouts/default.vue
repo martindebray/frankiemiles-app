@@ -209,9 +209,12 @@ p.has-small-font-size {
 }
 
 .cta {
+  margin: 96px auto;
+
   a {
     border-radius: 25.5px;
     background-color: #28387b;
+    color: $purewhite !important;
     font-size: 12px;
     font-weight: 500;
     font-style: normal;
@@ -225,10 +228,24 @@ p.has-small-font-size {
     margin: 0 auto;
     padding: 2px 16px;
     text-transform: uppercase;
+    text-decoration: none !important;
 
     &:hover {
       background: rgb(241, 87, 49);
     }
+  }
+
+  opacity: 1;
+  transition: 0.3s ease;
+
+  @media (max-width: $tabletDown) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  &.hidden {
+    opacity: 0;
+    margin: 0;
   }
 }
 
@@ -256,6 +273,8 @@ p.has-small-font-size {
 }
 
 .wp-block-image {
+  margin: 74px auto 72px;
+
   .aligncenter {
     width: 100%;
     display: flex;
@@ -265,7 +284,7 @@ p.has-small-font-size {
     justify-items: center;
     align-content: center;
     margin: 40px auto;
-    width: 43%;
+    width: 65%;
   }
 }
 
@@ -290,6 +309,41 @@ p.has-small-font-size {
     img {
       width: 100%;
     }
+  }
+}
+
+.columns-5 {
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: fit-content;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  margin: 40px auto;
+  width: 100%;
+  align-items: center;
+
+  list-style: none;
+
+  > * {
+    padding: 20%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  @media (max-width: $mediumDown) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  @media (max-width: $smallDown) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: $tabletDown) {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -328,6 +382,33 @@ p.has-small-font-size {
   &.alignwide {
     padding: 0;
   }
+
+  @media (max-width: $tablet) {
+    flex-direction: column;
+    text-align: center;
+
+    > * {
+      width: 100%;
+      margin: 0 auto 96px;
+    }
+
+    &.has-media-on-the-right {
+      figure {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+figcaption {
+  font-size: 10px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.3;
+  letter-spacing: 0.4px;
+  color: #787878;
+  margin-top: 4px;
 }
 
 .m-social {
@@ -339,6 +420,19 @@ p.has-small-font-size {
 
   > div {
     margin: 0 5px;
+  }
+}
+
+.markup {
+  p {
+    a {
+      font-weight: normal;
+      color: #999999;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 /**

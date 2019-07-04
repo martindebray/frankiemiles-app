@@ -148,8 +148,8 @@ h1 {
     }
   }
 
-  @media (max-width: $tabletDown) {
-    padding: 0 0 80px;
+  @media (max-width: $tablet) {
+    padding: 0 4% 80px;
 
     .text {
       flex-direction: column;

@@ -3,7 +3,7 @@
     <Hero v-if="page._embedded['wp:featuredmedia']" :data="page" type="normal" />
 
     <div v-if="page" class="wrap">
-      <div v-if="page.content.rendered" v-html="page.content.rendered" class />
+      <div v-if="page.content.rendered" v-html="page.content.rendered" class="markup" />
     </div>
 
     <div v-else>FAILURE</div>

@@ -19,21 +19,46 @@
 
     <div class="sub">
       <div class="left">
-        <div v-html="menu[0].acf.left" />
+        <ul v-if="menu">
+          <li v-for="i in menu">
+            <a :href="i.url">{{i.title}}</a>
+
+            <ul v-if="i.child_items">
+              <li v-for="j in i.child_items">
+                <a :href="j.url">{{j.title}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
 
       <div class="right">
-        <div
-          v-for="item in menu[0].acf.right"
-          :style="`background: ${item.colors[0].color};`"
-          :class="`${item.image ? `imaged` : ``} item`"
-        >
-          <nuxt-link :to="`/${item.link.replace(`${url}/`, ``)}`">
-            <img v-if="item.image.url" :src="item.image.url" :title="item.image.title" />
+        <div class="item imaged">
+          <nuxt-link to="/about">
+            <img
+              src="https://debray.space/frankiemiles/wp-content/uploads/2019/05/Rectangle@2x.jpg"
+            />
             <div>
               <div>
-                <p class="p-big" :style="`color: ${item.colors[1].color};`">{{item.title}}</p>
-                <p>{{item.baseline}}</p>
+                <p class="big">Frankie Miles</p>
+                <p class="t-cat">About</p>
+              </div>
+            </div>
+          </nuxt-link>
+        </div>
+        <div class="item imaged">
+          <nuxt-link to="/about">
+            <img
+              src="https://debray.space/frankiemiles/wp-content/uploads/2019/05/Rectangle@2x.jpg"
+              style="opacity:0;"
+            />
+            <div>
+              <div>
+                <p class="big">
+                  Comissioned
+                  <br />Projects
+                </p>
+                <p class="t-cat">Discover More</p>
               </div>
             </div>
           </nuxt-link>
@@ -58,9 +83,12 @@ export default {
     getMenu(url) {
       let data = null;
 
-      const menu = axios.get(`${url}/wp-json/wp/v2/footer/`).then(res => {
-        this.menu = res.data;
-      });
+      const menu = axios
+        .get(`${url}/wp-json/menus/v1/menus/footer/`)
+        .then(res => {
+          this.menu = res.data.items;
+          console.log(this.menu);
+        });
 
       const social = axios
         .get(`${url}/wp-json/menus/v1/menus/social`)
@@ -126,16 +154,18 @@ export default {
       display: grid;
       align-content: center;
       justify-content: center;
+      padding: 42px 5%;
 
       ul {
         list-style: none;
         padding-left: 0;
       }
 
-      > div > ul {
+      > ul {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 72px;
+        justify-items: center;
 
         > li {
           > a {
@@ -196,53 +226,96 @@ export default {
 
       .item {
         position: relative;
+        overflow: hidden;
+        transition: 0.3s ease;
 
-        div {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          color: white;
-          text-align: center;
-          height: 50%;
-          text-align: center;
-          display: grid;
-          align-content: space-between;
-        }
+        a {
+          display: inline;
 
-        &:not(.imaged) {
-          a > div {
-            height: 100%;
+          > div {
+            position: absolute;
+            bottom: 14%;
+            top: 0;
+            left: 0;
+            right: 0;
+            color: white;
+            text-align: center;
+            display: grid;
+            align-content: end;
           }
         }
 
+        .big {
+          margin-bottom: 72px;
+          transition: 0.3s ease;
+        }
+
+        &:first-child {
+          .big {
+            font-family: $serif;
+            font-size: 36px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: -1.8px;
+          }
+
+          p {
+            color: $purewhite;
+          }
+        }
+
+        &:last-child {
+          background: #f15731;
+
+          .big {
+            font-size: 28px;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.43;
+            letter-spacing: 0.62px;
+          }
+
+          p:not(.big) {
+            color: $purewhite;
+          }
+
+          &:hover {
+            background: $pureblack;
+          }
+        }
+        &:hover {
+          .big {
+            color: #f15731;
+          }
+          background: $pureblack;
+        }
+
         img {
+          transform: scale(1.05);
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
-
-        p:last-child {
-          font-size: 10px;
-          font-weight: 900;
-          font-style: normal;
-          font-stretch: normal;
-          line-height: normal;
-          letter-spacing: 1.2px;
-        }
       }
     }
 
+    @media (max-width: $smallDown) {
+      grid-template-columns: 1fr;
+    }
+
     @media (max-width: $tabletDown) {
-      grid-template-columns: 100%;
+      /* grid-template-columns: 100%; */
 
       .left {
         padding: 30px 3.75%;
-        justify-content: flex-start;
 
-        > div > ul {
+        > ul {
           grid-template-columns: 1fr 1fr;
           grid-gap: 24px 48px;
+          justify-items: start;
         }
       }
 

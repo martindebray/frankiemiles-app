@@ -1,7 +1,7 @@
 <template>
   <div id="umaylike">
     <h4 class="t-cat">You may also like</h4>
-    <Grid class="grid3" :data="posts" />
+    <Grid :class="`grid${posts.length}`" :data="posts" />
   </div>
 </template>
 

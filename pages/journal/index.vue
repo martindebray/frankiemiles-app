@@ -1,8 +1,8 @@
 <template>
   <div class="wrap">
     <div class="text">
-      <h2 class="j-tit">{{page.title.rendered}}</h2>
-      <div class="j-txt" v-html="page.content.rendered"></div>
+      <h1 class="h2">{{page.title.rendered}}</h1>
+      <div class="t-big-serif" v-html="page.content.rendered"></div>
     </div>
     <Journal />
   </div>

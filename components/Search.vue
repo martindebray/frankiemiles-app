@@ -1,29 +1,27 @@
 <template>
-  <div class="wrap" id="app">
-    <section class="cnotv__section">
-      <h1 class="h1">Search</h1>
-      <p class="p-big">Looking for something?</p>
-      <input
-        ref="search-field"
-        type="text"
-        class="search-field"
-        placeholder="Try me"
-        v-model.lazy="searchQuery"
-        v-on:change="loadPosts"
-      />
-    </section>
-    <br />
+  <div class="wrap" id="search">
+    <section>
+      <div class="h2 search-head">
+        <span>Search for</span>
+        <input
+          ref="search-field"
+          type="text"
+          class="search-field h2"
+          v-model.lazy="searchQuery"
+          v-on:change="loadPosts"
+        />
 
-    <!-- <section>
-      <div class="h1" v-show="searchQuery">You searched: {{searchQuery}}</div>
-    </section>-->
+        <p
+          :class="`result no-result ${resultLength > 0 ? `hidden` : ``}`"
+          v-if="resultLength === 0"
+        >
+          {{feedbackMsg}}
+          <span class="emoji">:(</span>
+        </p>
+        <p class="result" v-if="resultLength > 0">{{feedbackMsg}}</p>
+      </div>
 
-    <section v-if="nothing">
-      <p class="h1">{{feedbackMsg}}</p>
-    </section>
-
-    <section v-else>
-      <Grid class="grid3" :data="results" type="search" />
+      <Grid class="grid3 grid-sm" :data="results" type="search" v-if="resultLength > 0" />
     </section>
   </div>
 </template>
@@ -41,21 +39,9 @@ export default {
       searchQuery: this.query,
       sources: [
         {
-          name: "Journal",
+          name: "Posts",
           on: true,
-          url: `${process.env.API}/wp-json/wp/v2/journal?_embed=1`,
-          posts: []
-        },
-        {
-          name: "Press",
-          on: true,
-          url: `${process.env.API}/wp-json/wp/v2/press?_embed=1`,
-          posts: []
-        },
-        {
-          name: "Projects",
-          on: true,
-          url: `${process.env.API}/wp-json/wp/v2/projects?_embed=1`,
+          url: `${process.env.API}/wp-json/wp/v2/multiple-post-type?type[]=projects&type[]=journal&type[]press&_embed=1`,
           posts: []
         },
         {
@@ -67,7 +53,8 @@ export default {
       ],
       results: [],
       nothing: true,
-      feedbackMsg: ""
+      feedbackMsg: "",
+      resultLength: 0
     };
   },
   filters: {
@@ -81,7 +68,7 @@ export default {
     loadPosts() {
       let bigArray = [];
 
-      if (this.$refs["search-field"].value.length > 0) {
+      if (this.$refs["search-field"].value.length >= 0) {
         this.sources.forEach((source, index) => {
           if (source.on) {
             var searchUrl = this.generateUrl(source);
@@ -92,11 +79,17 @@ export default {
 
               if (bigArray.length > 0) {
                 this.results = bigArray;
+                this.feedbackMsg =
+                  bigArray.length === 1
+                    ? `${bigArray.length} result`
+                    : `${bigArray.length} results`;
                 this.nothing = false;
               } else {
-                this.feedbackMsg = `no results :(`;
+                this.feedbackMsg = `No Results found`;
                 this.nothing = true;
               }
+
+              this.resultLength = bigArray.length;
             });
           }
         });
@@ -126,21 +119,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#search {
+  .h1 {
+    width: 100%;
+    display: flex;
+  }
+
+  .result {
+    font-size: 21px;
+    line-height: 1.71;
+    letter-spacing: 1.81px;
+  }
+
+  .no-result {
+    color: #ff0000;
+    font-weight: normal;
+    margin: 72px auto 12px;
+  }
+
+  .emoji {
+    font-size: 121px;
+    color: #d8d8d8;
+    display: block;
+  }
+}
+
+.search-head {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
 .search-field {
   border: 0;
   border-bottom: 5px solid $pureblack;
   appearance: none;
   outline: none;
 
-  width: 100%;
-  padding: 12px 0;
-  margin: 48px 0;
-
-  font-size: 68px;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1;
-  letter-spacing: 1.5px;
+  margin-left: 0px;
 }
 </style>

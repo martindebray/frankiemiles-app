@@ -207,27 +207,6 @@ export default {
     margin: 24px auto 36px;
   }
 }
-
-.cta {
-  margin-top: 90px;
-  margin-bottom: 90px;
-
-  @media (max-width: $tabletDown) {
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
-}
-
-.wall {
-  .wall-title {
-    font-size: 24px;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: 0.8px;
-  }
-}
 </style>
 
 <style lang="scss">
@@ -250,6 +229,15 @@ export default {
   justify-content: space-between;
   padding: 0 7.8%;
   margin: 48px auto;
+
+  .wall-title {
+    font-size: 24px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.8px;
+  }
 
   > div {
     width: calc(calc(100% / 2) - 12px);
@@ -285,6 +273,7 @@ export default {
     &:hover {
       img {
         transform: translateY(-8px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
       }
 
       .arrow {

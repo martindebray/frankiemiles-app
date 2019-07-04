@@ -40,6 +40,7 @@ export default {
   },
   props: ["data", "classes", "type"],
   mounted() {
+    console.log("wqe", this.data);
     this.url = process.env.API;
   }
 };
@@ -69,9 +70,15 @@ export default {
 
     &:hover {
       img {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
         transform: translateY(-8px) !important;
       }
     }
+  }
+
+  &.grid2 {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 72px 24px;
   }
 
   &.grid3 {
@@ -82,6 +89,14 @@ export default {
   &.grid4 {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 30px;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media (max-width: $tabletDown) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   &.gridStart {

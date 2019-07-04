@@ -1,7 +1,5 @@
 <template>
-  <div class="wrap">
-    <Pross />
-  </div>
+  <Pross />
 </template>
 
 <script>

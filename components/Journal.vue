@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Grid id="journal" class="grid3" :data="posts" />
+    <Grid id="journal" class="grid3 grid-sm" :data="posts" />
     <div :class="`cta ${moreToLoad ? `show` : `hidden`}`" @click="loadMore">
       <a>Load more</a>
     </div>

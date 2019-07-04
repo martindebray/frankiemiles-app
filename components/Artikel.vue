@@ -1,9 +1,9 @@
 <template>
   <div :class="`artikel ${post.type === `journal` ? `journal` : `base`}`">
     <div class="artikel-head">
-      <p v-if="post.type === `projects`">{{post.type}}: {{post.title.rendered}}</p>
+      <p class="t-cat" v-if="post.type === `projects`">{{post.type}}: {{post.title.rendered}}</p>
       <h1 class="h1">{{post.title.rendered}}</h1>
-      <p v-if="post.type !== `projects`">{{post._embedded['wp:term'][0][0].name}}</p>
+      <p class="t-cat" v-if="post.type !== `projects`">{{post._embedded['wp:term'][0][0].name}}</p>
     </div>
     <figure class="artikel-hero">
       <img
@@ -71,15 +71,6 @@ export default {
     }
 
     .artikel-hero {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      width: fit-content;
-      justify-content: center;
-      justify-items: center;
-      align-content: center;
-      margin: 40px auto;
-      width: 43%;
     }
   }
 
@@ -108,17 +99,63 @@ export default {
   &.journal {
     .artikel-markup {
       > *:not(.wide) {
-        padding: 0 20%;
+        &:not(.wp-block-image) {
+          padding: 0 2%;
+          max-width: 610px;
+        }
       }
 
       > *.wide {
-        padding: 0 8%;
+        padding: 0 2%;
+        max-width: 1146px;
+      }
+
+      > .wp-block-columns.has-2-columns {
+        padding: 0 3.5%;
+        max-width: initial;
       }
     }
   }
 
-  .cta {
-    margin: 96px auto;
+  &-head {
+    h2 {
+      font-size: 24px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: 0.8px;
+
+      margin-bottom: 32px;
+
+      &:first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &-hero {
+    display: flex;
+    justify-content: center;
+    margin: 34px auto 56px;
+  }
+
+  h3,
+  .h3 {
+    margin: 54px auto 84px;
+  }
+
+  p,
+  .p {
+    margin: 32px auto;
+  }
+
+  @media (max-width: $tablet) {
+    &-hero {
+      img {
+        width: 100%;
+      }
+    }
   }
 
   @media (max-width: $tabletDown) {
