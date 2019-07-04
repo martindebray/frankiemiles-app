@@ -1,79 +1,32 @@
 <template>
-  <div :class="classes">
-    <div v-for="item in data" class="g-item" v-animate="'r-slide-down'">
-      <nuxt-link
-        v-if="item.type === `post`"
-        :to="`/journal/${item.slug}`"
-        :class="` ${isLoaded ? 'loaded' : ''}`"
-      >
-        <lazy-component @show="handler">
-          <img
-            v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
-            :title="item.acf.hero.title"
-          />
-        </lazy-component>
-        <h4
+  <div class="grid">
+    <div
+      v-for="item in data"
+      :class="`grid-item grid-item--${item.type}`"
+      v-animate="'r-slide-down'"
+    >
+      <nuxt-link v-if="item.type !== `press`" :class="item.type" :to="`/${item.type}/${item.slug}`">
+        <img
+          v-if="item._embedded['wp:featuredmedia'] && item._embedded['wp:featuredmedia'][0]"
+          :src="item._embedded['wp:featuredmedia'][0].source_url"
+          :title="item._embedded['wp:featuredmedia'][0].title.rendered"
+        />
+        <p
           v-if="item._embedded && item._embedded['wp:term']"
-        >{{item._embedded["wp:term"][0][0].name}}</h4>
-        <h3 v-if="item.title">{{item.title.rendered}}</h3>
+          class="t-cat"
+        >{{item._embedded["wp:term"][0][0].name}}</p>
+        <p class="t-cat" v-else-if="item.type === `projects`">Comissioned Projects</p>
+        <p class="t-cat" v-else>{{item.type}}</p>
+        <h3 v-if="item.title" class="grid-item-title">{{item.title.rendered}}</h3>
       </nuxt-link>
-      <nuxt-link
-        v-else-if="item.type === `projects`"
-        :to="`/projects/${item.slug}`"
-        :class="` ${isLoaded ? 'loaded' : ''}`"
-      >
-        <lazy-component @show="handler">
-          <img
-            v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
-            :title="item.acf.hero.title"
-          />
-        </lazy-component>
-        <h4>Comissioned Projects</h4>
-        <h3 v-if="item.title">{{item.title.rendered}}</h3>
-      </nuxt-link>
-      <nuxt-link
-        v-else-if="item.type === `press`"
-        :to="`/press/${item.slug}`"
-        :class="` ${isLoaded ? 'loaded' : ''}`"
-      >
-        <lazy-component @show="handler">
-          <img
-            v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
-            :title="item.acf.hero.title"
-          />
-        </lazy-component>
-        <h4 v-if="item._embedded && item._embedded['wp:term']">{{item.type}}</h4>
-        <h3 v-if="item.title">{{item.title.rendered}}</h3>
-      </nuxt-link>
-      <nuxt-link v-else-if="item.type === `page`" :to="item.slug">
-        <lazy-component @show="handler">
-          <img
-            v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
-            :title="item.acf.hero.title"
-          />
-        </lazy-component>
-        <h4
-          v-if="item._embedded && item._embedded['wp:term']"
-        >{{item._embedded["wp:term"][0][0].name}}</h4>
-        <h3 v-if="item.title">{{item.title.rendered}}</h3>
-      </nuxt-link>
-      <nuxt-link v-else :to="`/${item.type}/${item.slug}`" :class="item.type">
-        <lazy-component @show="handler">
-          <img
-            v-if="item.acf && item.acf.hero"
-            :src="item.acf.hero.url"
-            :title="item.acf.hero.title"
-          />
-        </lazy-component>
-        <h4
-          v-if="item._embedded && item._embedded['wp:term']"
-        >{{item._embedded["wp:term"][0][0].name}}</h4>
-        <h3 v-if="item.title">{{item.title.rendered}}</h3>
-      </nuxt-link>
+      <a v-else :href="item.acf.link.url" target="_blank" :class="item.type">
+        <img
+          v-if="item._embedded['wp:featuredmedia'] && item._embedded['wp:featuredmedia'][0]"
+          :src="item._embedded['wp:featuredmedia'][0].source_url"
+          :title="item._embedded['wp:featuredmedia'][0].title.rendered"
+        />
+        <p v-if="item.title" class="grid-item-title">{{item.title.rendered}}</p>
+      </a>
     </div>
   </div>
 </template>
@@ -82,37 +35,30 @@
 export default {
   data() {
     return {
-      num: 0,
-      isLoaded: false,
       url: ""
     };
   },
   props: ["data", "classes", "type"],
-  methods: {
-    handler(component) {
-      this.num += 1;
-
-      if (this.num > this.data.length) {
-        this.isLoaded = true;
-      }
-    }
-  },
   mounted() {
-    // console.log("this", this);
     this.url = process.env.API;
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .grid {
   display: grid;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-around;
+  width: 100%;
 
-  .g-item {
-    /* padding: 24px 0; */
+  &-item {
+    > a {
+      display: inline-block;
+      transition: all 0.5s;
+      opacity: 1;
+    }
 
     img {
       width: 100%;
@@ -131,11 +77,6 @@ export default {
   &.grid3 {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 72px 24px;
-
-    .g-item {
-      /* width: calc(100% / 3); */
-      /* margin-bottom: 72px; */
-    }
   }
 
   &.grid4 {
@@ -149,16 +90,6 @@ export default {
 
   @media (max-width: $tabletDown) {
     grid-template-columns: 1fr !important;
-  }
-}
-
-#projects,
-#press {
-  @media (max-width: $tabletDown) {
-    h4,
-    h3 {
-      padding: 0 3.7%;
-    }
   }
 }
 </style>

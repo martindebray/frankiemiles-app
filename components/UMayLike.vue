@@ -1,7 +1,7 @@
 <template>
   <div id="umaylike">
     <h4 class="t-cat">You may also like</h4>
-    <Grid :classes="`grid grid3`" :data="posts" />
+    <Grid class="grid3" :data="posts" />
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
     getPosts(url) {
       const posts = axios
         .get(
-          `${url}/wp-json/wp/v2/multiple-post-type?type[]=press&type[]=projects&type[]=post&_embed=1&per_page=3&categories=${this.data}`
+          `${url}/wp-json/wp/v2/multiple-post-type?type[]=projects&type[]=journal&_embed=1&per_page=3&categories=${this.data}`
         )
         .then(res => {
           this.posts = res.data;
@@ -40,7 +40,9 @@ export default {
 
 <style lang="scss" scoped>
 #umaylike {
-  margin: 48px 12.9%;
+  margin: 96px 12.9%;
+  padding: 0 10%;
+  text-align: center;
 
   h4 {
     margin-bottom: 24px;

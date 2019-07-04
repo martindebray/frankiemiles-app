@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Grid id="journal" :classes="`grid grid3 gridStart`" :data="posts" />
+    <Grid id="journal" class="grid3" :data="posts" />
     <div :class="`cta ${moreToLoad ? `show` : `hidden`}`" @click="loadMore">
       <a>Load more</a>
     </div>
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     getLength() {
-      return axios.get(`${process.env.API}/wp-json/wp/v2/posts`).then(res => {
+      return axios.get(`${process.env.API}/wp-json/wp/v2/journal`).then(res => {
         this._length = res.data.length;
 
         if (this.loaded >= this._length) {
@@ -40,7 +40,7 @@ export default {
 
       return axios
         .get(
-          `${process.env.API}/wp-json/wp/v2/posts?_embed=1&per_page=${this.loaded}`
+          `${process.env.API}/wp-json/wp/v2/journal?_embed=1&per_page=${this.loaded}`
         )
         .then(res => {
           this.posts = res.data;
@@ -63,13 +63,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.cta {
-  margin-top: 100px;
-
-  @media (max-width: $tabletDown) {
-    margin-top: 40px;
-  }
-}
-</style>

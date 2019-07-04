@@ -4,16 +4,16 @@
       <h2 class="j-tit">{{page.title.rendered}}</h2>
       <div class="j-txt" v-html="page.content.rendered"></div>
     </div>
-    <Posts />
+    <Journal />
   </div>
 </template>
 
 <script>
-import Posts from "~/components/Posts";
+import Journal from "~/components/Journal";
 
 export default {
   components: {
-    Posts
+    Journal
   },
   async asyncData({ params, $axios }) {
     let page = await $axios.$get(

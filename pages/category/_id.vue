@@ -4,7 +4,7 @@
       <h2 class="j-tit">{{cat[0].name}}</h2>
       <div class="j-txt" v-html="cat[0].description"></div>
     </div>
-    <Grid :classes="`grid grid3`" :data="bigArray" />
+    <Grid class="grid3" :data="bigArray" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
 
     let posts = await $axios
       .$get(
-        `${process.env.API}/wp-json/wp/v2/multiple-post-type?type[]=press&type[]=projects&type[]=post&_embed=1&per_page=100&categories=${catId}`
+        `${process.env.API}/wp-json/wp/v2/multiple-post-type?type[]=projects&type[]=post&_embed=1&per_page=100&categories=${catId}`
       )
       .then(res => {
         res.map((k, i) => {

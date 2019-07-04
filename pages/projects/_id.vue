@@ -11,7 +11,7 @@ export default {
   },
   async asyncData({ params, $axios }) {
     let post = await $axios.$get(
-      `${process.env.API}/wp-json/wp/v2/projects?slug=${params.id}`
+      `${process.env.API}/wp-json/wp/v2/projects?slug=${params.id}&_embed=1`
     );
 
     typeof post[0] !== `undefined` ? (post = post[0]) : (post = post);

@@ -1,37 +1,25 @@
 <template>
   <div>
-    <Hero v-if="page.acf.hero" :data="page.acf.hero" type="normal" />
+    <Hero v-if="page._embedded['wp:featuredmedia']" :data="page" type="normal" />
+
     <div v-if="page" class="wrap">
-      <Categories v-if="page.template === `all-categories.php`" />
-      <Posts v-else-if="page.template === `all-posts.php`" />
-      <Press v-else-if="page.template === `all-press.php`" />
-      <Projects v-else-if="page.template === `all-projects.php`" />
-      <Modules :data="page.acf" />
+      <div v-if="page.content.rendered" v-html="page.content.rendered" class />
     </div>
-    <div v-else>FAIL</div>
+
+    <div v-else>FAILURE</div>
   </div>
 </template>
 
 <script>
-import Categories from "~/components/Categories";
 import Hero from "~/components/Hero";
-import Posts from "~/components/Posts";
-import Press from "~/components/Press";
-import Projects from "~/components/Projects";
-import Modules from "~/components/Modules/index";
 
 export default {
   components: {
-    Categories,
-    Hero,
-    Posts,
-    Press,
-    Projects,
-    Modules
+    Hero
   },
   async asyncData({ params, $axios }) {
     let page = await $axios.$get(
-      `${process.env.API}/wp-json/wp/v2/pages?slug=${params.id}`
+      `${process.env.API}/wp-json/wp/v2/pages?slug=${params.id}&_embed=1`
     );
 
     typeof page[0] !== `undefined` ? (page = page[0]) : (page = page);

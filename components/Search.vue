@@ -10,9 +10,9 @@
         placeholder="Try me"
         v-model.lazy="searchQuery"
         v-on:change="loadPosts"
-      >
+      />
     </section>
-    <br>
+    <br />
 
     <!-- <section>
       <div class="h1" v-show="searchQuery">You searched: {{searchQuery}}</div>
@@ -23,7 +23,7 @@
     </section>
 
     <section v-else>
-      <Grid classes="grid grid3" :data="results" type="search"/>
+      <Grid class="grid3" :data="results" type="search" />
     </section>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
         {
           name: "Journal",
           on: true,
-          url: `${process.env.API}/wp-json/wp/v2/posts?_embed=1`,
+          url: `${process.env.API}/wp-json/wp/v2/journal?_embed=1`,
           posts: []
         },
         {

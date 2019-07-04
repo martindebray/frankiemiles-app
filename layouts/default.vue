@@ -12,14 +12,10 @@
 import Vue from "vue";
 import VueAnimate from "vue-animate-scroll";
 
-import retina from "retinajs";
-import VueRetina from "vue-retina";
-
 import CustomHeader from "~/components/Header";
 import CustomFooter from "~/components/Footer";
 
 Vue.use(VueAnimate);
-Vue.use(VueRetina, { retina });
 
 export default {
   components: {
@@ -60,7 +56,7 @@ html {
 }
 
 main {
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 .wrap {
@@ -116,31 +112,8 @@ img {
   max-width: 100%;
 }
 
-.t-cat {
-  font-size: 10px;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: 1.2px;
-  text-align: center;
-  text-transform: uppercase;
-  margin-top: 18px;
-}
-
-.t-serif {
-  font-family: $serif;
-  font-size: 18px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.78;
-  letter-spacing: normal;
-  text-align: center;
-  color: #747474;
-}
-
-.h1 {
+.h1,
+h1 {
   font-size: 68px;
   font-weight: 500;
   font-style: normal;
@@ -148,200 +121,212 @@ img {
   line-height: 1.06;
   letter-spacing: 1.5px;
   margin-bottom: 16px;
-
-  @media (max-width: $mediumDown) {
-    font-size: 32px;
-  }
 }
 
-.h2 {
+.h2,
+h2 {
   font-size: 48px;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.43;
   letter-spacing: 0.6px;
-  text-align: center;
 
   @media (max-width: $mediumDown) {
     font-size: 32px;
   }
 }
 
-.text_l p,
-.p-big {
-  font-size: 28px;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.43;
-  letter-spacing: 0.6px;
-
-  @media (max-width: $mediumDown) {
-    font-size: 22px;
-  }
-}
-
-.text_m p,
-.p-med {
-  font-size: 16px;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.69;
-  letter-spacing: normal;
-}
-
-.text_s p,
-.p-small {
-  font-size: 14px;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.93;
-}
-
-p {
-  font-size: 22px;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.64;
-  letter-spacing: normal;
-
-  @media (max-width: $mediumDown) {
-    font-size: 18px;
-  }
-}
-
-figcaption {
-  font-size: 10px;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 2.4;
-  letter-spacing: 0.4px;
-  color: #787878;
-}
-
-.j-tit {
+.h3,
+h3 {
   font-size: 28px;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.43;
   letter-spacing: 0.62px;
-  text-align: center;
+
+  @media (max-width: $mediumDown) {
+    font-size: 32px;
+  }
 }
 
-.j-txt {
-  /* padding: 0 5%; */
+p.has-large-font-size {
+  font-size: 22px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.64;
+  letter-spacing: normal;
+  color: #090909;
 }
 
-.t-wrap {
-  max-width: 894px;
-  margin: 14px auto;
+p {
+  font-size: 16px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.69;
+  letter-spacing: normal;
+  color: #090909;
+
+  margin: 18px auto;
 }
 
-#sorting {
-  padding: 0 3.7% 130px;
+p.has-small-font-size {
+  font-size: 14px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.93;
+  letter-spacing: normal;
+  color: #090909;
+}
 
-  h2 {
-    font-size: 24px;
-    font-weight: 300;
+.t-cat {
+  font-size: 10px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin: 9px 0 4px;
+}
+
+.t-big-serif {
+  p {
+    font-family: $serif;
+    font-size: 18px;
+    font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    line-height: normal;
+    line-height: 1.78;
+    letter-spacing: normal;
+    text-align: center;
+    color: #747474;
+  }
+}
+
+.cta {
+  a {
+    border-radius: 25.5px;
+    background-color: #28387b;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 3;
     letter-spacing: 0.8px;
+    text-align: center;
+    color: #ffffff;
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    padding: 2px 16px;
+    text-transform: uppercase;
+
+    &:hover {
+      background: rgb(241, 87, 49);
+    }
   }
+}
 
-  .text {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.grid-md {
+  .grid-item {
+    .grid-item-title {
+      font-size: 19px;
+      letter-spacing: 0.63px;
+      font-weight: normal;
+    }
   }
+}
 
-  ul {
-    list-style: none;
-
-    li {
-      margin: 0 12px;
-      float: left;
-      cursor: pointer;
-
-      font-family: $sans;
-      font-size: 16px;
+.grid-sm {
+  .grid-item {
+    .grid-item-title {
+      font-size: 14px;
       font-weight: 300;
       font-style: normal;
       font-stretch: normal;
-      line-height: normal;
-      letter-spacing: normal;
+      line-height: 1.71;
+      letter-spacing: 0.4px;
+    }
+  }
+}
 
-      &:last-child {
-        margin-right: 0;
-      }
+.wp-block-image {
+  .aligncenter {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    margin: 40px auto;
+    width: 43%;
+  }
+}
 
-      &::before {
-        content: "";
-        width: 12px;
-        height: 12px;
-        background: $purewhite;
-        display: inline-block;
-        border: 1px solid $pureblack;
-        border-radius: 100%;
-        vertical-align: middle;
-        margin-right: 10px;
-        transform: translateY(-1.5px);
-      }
+.wp-block-columns {
+  &.has-2-columns {
+    padding: 0 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    margin: 40px auto;
+    width: 100%;
 
-      &:hover {
-        &::before {
-          background: $pureblack;
-        }
-      }
+    > * {
+      width: 46%;
+      margin: 0 1%;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.wp-block-media-text {
+  padding: 0 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  margin: 40px auto;
+  width: 100%;
+
+  > * {
+    width: 46%;
+    margin: 0 1%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  &.has-media-on-the-right {
+    figure {
+      order: 2;
+    }
+
+    div {
+      order: 1;
     }
   }
 
-  .alpha {
-    .alpha {
-      &::before {
-        background: $pureblack;
-      }
-    }
-  }
-
-  .chrono {
-    .chrono {
-      &::before {
-        background: $pureblack;
-      }
-    }
-  }
-
-  @media (max-width: $tabletDown) {
-    padding: 0 0 80px;
-
-    .text {
-      flex-direction: column;
-
-      > div {
-        width: min-content;
-      }
-    }
-
-    ul {
-      margin-top: 24px;
-      padding-left: 0;
-      display: flex;
-
-      li {
-        width: max-content;
-
-        &:last-child {
-          margin-right: 12px;
-        }
-      }
-    }
+  &.alignwide {
+    padding: 0;
   }
 }
 
@@ -354,57 +339,6 @@ figcaption {
 
   > div {
     margin: 0 5px;
-  }
-}
-
-.g-item {
-  > a {
-    display: inline-block;
-    transition: all 0.5s;
-    opacity: 1;
-
-    h3,
-    h4 {
-      max-width: 80%;
-    }
-
-    &.loaded {
-      opacity: 1;
-    }
-  }
-
-  h4 {
-    margin: 12px 0 6px;
-    font-size: 10px;
-    font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: 1.2px;
-    color: #383839;
-    text-transform: uppercase;
-  }
-
-  h3 {
-    font-size: 14px;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.71;
-    letter-spacing: 0.4px;
-  }
-
-  .projects,
-  .press {
-    h3 {
-      margin-top: 6px;
-      font-size: 19px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: 0.63px;
-    }
   }
 }
 /**

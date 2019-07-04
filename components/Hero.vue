@@ -1,42 +1,36 @@
 <template>
   <div class="hero" v-if="type === `home`">
-    <nuxt-link v-if="data.type === `post`" :to="`/journal/${data.slug}`">
-      <img v-if="data.acf.hero" :src="data.acf.hero.url" :title="data.acf.hero.title" v-rjs="1" />
+    <nuxt-link :to="`/${data.type}/${data.slug}`">
+      <img
+        v-if="data._embedded['wp:featuredmedia']"
+        :src="data._embedded['wp:featuredmedia'][0].source_url"
+      />
       <div class="metas">
         <h1 class="h1">{{data.title.rendered}}</h1>
-        <p v-if="data.type">{{data._embedded["wp:term"][0][0].name}}</p>
-      </div>
-    </nuxt-link>
-    <nuxt-link v-else :to="`/${data.type}/${data.slug}`">
-      <img v-if="data.acf.hero" :src="data.acf.hero.url" :title="data.acf.hero.title" v-rjs="1" />
-      <div class="metas">
-        <h1 class="h1">{{data.title.rendered}}</h1>
-        <p v-if="data.type === `projects`">Comissioned Project</p>
-        <p v-else>{{data.type}}</p>
+        <p v-if="data.type === `projects`" class="t-cat">Comissioned Project</p>
+        <p
+          v-else-if="data._embedded['wp:term']"
+          class="t-cat"
+        >{{data._embedded["wp:term"][0][0].name}}</p>
       </div>
     </nuxt-link>
   </div>
   <div class="hero" v-else-if="type === `normal`">
-    <img v-if="data[0].image" :src="data[0].image.url" :title="data[0].image.title" v-rjs="1" />
+    <img
+      v-if="data._embedded['wp:featuredmedia']"
+      :src="data._embedded['wp:featuredmedia'][0].source_url"
+      :title="data._embedded['wp:featuredmedia'][0].title.rendered"
+    />
     <div class="metas center">
-      <h1 class="h1">{{data[0].headline}}</h1>
-      <p v-if="data.type">{{data.type.toUpperCase()}}</p>
+      <h1 class="h1">{{data.title.rendered}}</h1>
+      <p v-if="data.type" class="t-cat">{{data.type.toUpperCase()}}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["data", "type"],
-  data() {
-    return {
-      url: ""
-    };
-  },
-  mounted() {
-    // console.log(this.data);
-    this.url = process.env.API;
-  }
+  props: ["data", "type"]
 };
 </script>
 
@@ -89,17 +83,9 @@ export default {
       text-align: center;
     }
 
-    p {
+    .t-cat {
       margin-top: 20px;
-      font-size: 20px;
-      font-weight: 900;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: 1.2px;
-      color: #ffffff;
-
-      text-transform: uppercase;
+      color: $purewhite;
     }
   }
 
