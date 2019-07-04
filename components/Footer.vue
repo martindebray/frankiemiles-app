@@ -25,7 +25,7 @@
 
             <ul v-if="i.child_items">
               <li v-for="j in i.child_items">
-                <a :href="j.url">{{j.title}}</a>
+                <a :href="j.url.replace(url, '')">{{j.title}}</a>
               </li>
             </ul>
           </li>

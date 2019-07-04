@@ -251,16 +251,29 @@ p.has-small-font-size {
 
 .grid-md {
   .grid-item {
+    text-align: left;
+
+    .t-cat {
+      margin: 9px 0 5px;
+    }
+
     .grid-item-title {
       font-size: 19px;
       letter-spacing: 0.63px;
       font-weight: normal;
+      margin: 0;
     }
   }
 }
 
 .grid-sm {
   .grid-item {
+    text-align: left;
+
+    .t-cat {
+      margin: 9px 0 5px;
+    }
+
     .grid-item-title {
       font-size: 14px;
       font-weight: 300;
@@ -268,6 +281,7 @@ p.has-small-font-size {
       font-stretch: normal;
       line-height: 1.71;
       letter-spacing: 0.4px;
+      margin: 0;
     }
   }
 }

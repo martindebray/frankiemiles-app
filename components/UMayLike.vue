@@ -1,7 +1,7 @@
 <template>
   <div id="umaylike">
     <h4 class="t-cat">You may also like</h4>
-    <Grid :class="`grid${posts.length}`" :data="posts" />
+    <Grid :class="`grid${posts.length} grid-sm`" :data="posts" />
   </div>
 </template>
 
@@ -45,7 +45,22 @@ export default {
   text-align: center;
 
   h4 {
-    margin-bottom: 24px;
+    margin-bottom: 40px;
+
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 4px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background: black;
+    }
   }
 }
 </style>

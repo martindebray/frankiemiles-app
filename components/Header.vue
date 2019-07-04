@@ -424,6 +424,8 @@ export default {
   display: none;
 
   div {
+    letter-spacing: 1.2px;
+
     &:not(:last-child) {
       margin-right: 26px;
     }
@@ -487,9 +489,9 @@ export default {
 
   .menu-sub-header {
     position: absolute;
-    top: 5%;
-    left: 5%;
-    right: 5%;
+    top: 24px;
+    left: 5.5%;
+    right: 0;
     display: flex;
     justify-content: space-between;
 
@@ -503,6 +505,16 @@ export default {
   }
 
   @media (max-width: $tabletDown) {
+    div {
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: 1.05px;
+    }
+
     .menu-link-parent {
       pointer-events: none;
     }
@@ -514,7 +526,7 @@ export default {
       bottom: 0;
       position: fixed;
       transform: translateY(0);
-      padding-top: 0;
+      padding: 0 22px;
       z-index: 1;
       background: white;
       height: 100%;
@@ -522,6 +534,31 @@ export default {
       display: flex;
       flex-direction: column;
       text-align: center;
+
+      justify-content: flex-start;
+      text-align: left;
+      padding-top: 80px;
+
+      font-family: HelveticaNeue;
+      font-size: 12px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: 1.2px;
+
+      > div {
+        &:not(.menu-sub-header) {
+          cursor: pointer;
+          padding: 14px 0;
+          margin-right: 0;
+          border-bottom: 1px solid #c8c7cc;
+
+          &:hover {
+            border-bottom: 1px solid #000;
+          }
+        }
+      }
     }
 
     .menu-sub-header {
@@ -536,11 +573,6 @@ export default {
 
       .menu-sub {
         left: 0;
-
-        > div {
-          margin-right: 0;
-          margin-bottom: 24px;
-        }
       }
     }
   }
@@ -585,9 +617,13 @@ export default {
       padding: 0 22px;
 
       > div {
-        padding: 12.5px 0;
+        padding: 14px 0;
         margin-right: 0;
         border-bottom: 1px solid #c8c7cc;
+
+        &:hover {
+          border-bottom: 1px solid #000;
+        }
       }
 
       a {
