@@ -36,8 +36,6 @@ export default {
   mounted() {
     // console.log(this.data);
     this.url = process.env.API;
-    console.log(this.data.acf.hero);
-    console.log(this.url + this.data.acf.hero.url);
   }
 };
 </script>

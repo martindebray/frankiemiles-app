@@ -280,7 +280,6 @@ export default {
       this.menuActive = !this.menuActive;
     },
     triggerMenuMobile(event) {
-      console.log(event.target);
       if (event.target.children.length > 1) {
         this.menuMobileActive = !this.menuMobileActive;
 
