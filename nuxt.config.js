@@ -86,27 +86,21 @@ export default {
       let data = [];
 
       return axios
-        .get(
-          `https://68016356-af44-11e7-9d7f-36d9b883c2cd.app.getshifter.io:26972/wp-json/wp/v2/pages`
-        )
+        .get(`https://debray.space/frankiemiles/wp-json/wp/v2/pages`)
         .then(res => {
           res.data.map(page => {
             data.push(page.slug);
           });
 
           return axios
-            .get(
-              `https://68016356-af44-11e7-9d7f-36d9b883c2cd.app.getshifter.io:26972/wp-json/wp/v2/posts`
-            )
+            .get(`https://debray.space/frankiemiles/wp-json/wp/v2/posts`)
             .then(res => {
               res.data.map(post => {
                 data.push(`journal/${post.slug}`);
               });
 
               return axios
-                .get(
-                  `https://68016356-af44-11e7-9d7f-36d9b883c2cd.app.getshifter.io:26972/wp-json/wp/v2/press`
-                )
+                .get(`https://debray.space/frankiemiles/wp-json/wp/v2/press`)
                 .then(res => {
                   res.data.map(post => {
                     data.push(`press/${post.slug}`);
@@ -114,7 +108,7 @@ export default {
 
                   return axios
                     .get(
-                      `https://68016356-af44-11e7-9d7f-36d9b883c2cd.app.getshifter.io:26972/wp-json/wp/v2/projects`
+                      `https://debray.space/frankiemiles/wp-json/wp/v2/projects`
                     )
                     .then(res => {
                       res.data.map(post => {

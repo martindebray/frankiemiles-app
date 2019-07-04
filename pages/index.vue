@@ -24,9 +24,9 @@
           <lazy-component @show="handler">
             <img
               v-if="item.acf && item.acf.hero"
-              :src="url+item.acf.hero.url"
+              :src="item.acf.hero.url"
               :title="item.acf.hero.title"
-              v-rjs="2"
+              v-rjs="1"
             />
           </lazy-component>
           <h4
@@ -42,9 +42,9 @@
           <lazy-component @show="handler">
             <img
               v-if="item.acf && item.acf.hero"
-              :src="url+item.acf.hero.url"
+              :src="item.acf.hero.url"
               :title="item.acf.hero.title"
-              v-rjs="2"
+              v-rjs="1"
             />
           </lazy-component>
           <h4 v-if="item.type === `projects`">Comissioned Projects</h4>
@@ -61,7 +61,7 @@
         <div>
           <nuxt-link v-if="i.type === `post`" :to="`/journal/${i.slug}`">
             <lazy-component @show="handler">
-              <img :src="url+i.acf.hero.url" v-rjs="2" />
+              <img :src="i.acf.hero.url" v-rjs="1" />
               <h3>{{i._embedded["wp:term"][0][0].name}}</h3>
               <h2>{{i.title.rendered}}</h2>
               <div v-if="i.excerpt" class="t-excerpt" v-html="i.excerpt.rendered" />
@@ -99,7 +99,7 @@
           </nuxt-link>
           <nuxt-link v-else :to="`/${i.type}/${i.slug}`">
             <lazy-component @show="handler">
-              <img :src="url+i.acf.hero.url" v-rjs="2" />
+              <img :src="i.acf.hero.url" v-rjs="1" />
               <h3 v-if="i.type === `projects`">Comissioned Projects</h3>
               <h3 v-else>Press</h3>
               <h2>{{i.title.rendered}}</h2>

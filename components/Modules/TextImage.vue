@@ -2,7 +2,7 @@
   <div class="text_image">
     <div v-html="text" />
     <div>
-      <img :src="url+image.url" :title="image.title" />
+      <img :src="image.url" :title="image.title" />
     </div>
   </div>
 </template>
