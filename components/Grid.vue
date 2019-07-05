@@ -40,7 +40,6 @@ export default {
   },
   props: ["data", "classes", "type"],
   mounted() {
-    console.log("wqe", this.data);
     this.url = process.env.API;
   }
 };

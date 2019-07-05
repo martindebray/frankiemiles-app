@@ -87,7 +87,6 @@ export default {
         .get(`${url}/wp-json/menus/v1/menus/footer/`)
         .then(res => {
           this.menu = res.data.items;
-          console.log(this.menu);
         });
 
       const social = axios
