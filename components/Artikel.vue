@@ -143,6 +143,8 @@ export default {
   &-hero {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
     margin: 34px auto 56px;
   }
 
