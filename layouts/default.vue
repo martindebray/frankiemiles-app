@@ -580,7 +580,7 @@ figcaption {
  */
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.7s;
+  transition: opacity 0.4s;
 }
 
 .page-enter,
@@ -592,13 +592,13 @@ figcaption {
  * Reveal Animations
  */
 .animate {
-  transition-delay: 0.05s;
-  transition-duration: 0.4s;
+  transition-delay: 0.025s;
+  transition-duration: 0.2s;
   transition-timing-function: cubic-bezier($cubic1);
 
   @media (max-width: $tabletDown) {
     transition-delay: 0s;
-    transition-duration: 0.2s;
+    transition-duration: 0.1s;
   }
 }
 
