@@ -93,7 +93,7 @@ export default {
           });
 
           return axios
-            .get(`https://debray.space/frankiemiles/wp-json/wp/v2/posts`)
+            .get(`https://debray.space/frankiemiles/wp-json/wp/v2/journal`)
             .then(res => {
               res.data.map(post => {
                 data.push(`journal/${post.slug}`);
