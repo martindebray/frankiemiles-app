@@ -88,6 +88,7 @@ export default {
 
     h1 {
       margin-bottom: 10px;
+      margin-left: 0;
     }
 
     .artikel-hero {
