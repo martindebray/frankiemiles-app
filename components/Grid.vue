@@ -78,11 +78,19 @@ export default {
   &.grid2 {
     grid-template-columns: 1fr 1fr;
     grid-gap: 72px 24px;
+
+    @media (max-width: $tabletDown) {
+      grid-template-columns: 1fr 1fr !important;
+    }
   }
 
   &.grid3 {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 72px 24px;
+
+    @media (max-width: $tabletDown) {
+      grid-gap: 24px 18px;
+    }
   }
 
   &.grid4 {
@@ -103,6 +111,7 @@ export default {
   }
 
   @media (max-width: $tabletDown) {
+    grid-gap: 24px 18px;
     grid-template-columns: 1fr !important;
   }
 }

@@ -42,5 +42,9 @@ export default {
 <style lang="scss" scoped>
 .wrap {
   margin-top: 210px;
+
+  @media (max-width: $tabletDown) {
+    margin-top: 105px;
+  }
 }
 </style>

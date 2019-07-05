@@ -62,6 +62,10 @@ export default {
       background: black;
     }
   }
+
+  @media (max-width: $tabletDown) {
+    margin: 48px 0;
+  }
 }
 </style>
 

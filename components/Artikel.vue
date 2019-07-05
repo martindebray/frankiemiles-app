@@ -164,6 +164,8 @@ export default {
   }
 
   @media (max-width: $tabletDown) {
+    margin-top: 115px;
+
     &.base {
       .artikel-head {
         padding: 0 7.5%;

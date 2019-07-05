@@ -153,12 +153,17 @@ h3 {
   line-height: 1.43;
   letter-spacing: 0.62px;
 
+  &.wide {
+    max-width: 1300px !important;
+  }
+
   @media (max-width: $mediumDown) {
     font-size: 32px;
   }
 
-  &.wide {
-    max-width: 1300px !important;
+  @media (max-width: $tabletDown) {
+    font-size: 20px;
+    line-height: 1.2;
   }
 }
 
@@ -173,6 +178,11 @@ p.has-large-font-size {
 
   &.wide {
     max-width: 1300px !important;
+  }
+
+  @media (max-width: $tabletDown) {
+    font-size: 18px;
+    line-height: 1.56;
   }
 }
 
@@ -191,6 +201,10 @@ blockquote {
   &.wide {
     max-width: 1300px !important;
   }
+
+  @media (max-width: $tabletDown) {
+    font-size: 14px;
+  }
 }
 
 p.has-small-font-size,
@@ -206,6 +220,11 @@ blockquote {
   &.wide {
     max-width: 1300px !important;
   }
+
+  @media (max-width: $tabletDown) {
+    font-size: 12px;
+    line-height: 1.67;
+  }
 }
 
 blockquote {
@@ -220,6 +239,14 @@ blockquote {
     font-size: 12px;
     color: #787878;
   }
+
+  @media (max-width: $tabletDown) {
+    font-size: 12px;
+
+    cite {
+      font-style: 9px;
+    }
+  }
 }
 
 blockquote.is-style-large {
@@ -229,6 +256,16 @@ blockquote.is-style-large {
 
   cite {
     font-size: 14px;
+  }
+
+  @media (max-width: $tabletDown) {
+    p {
+      font-size: 16px;
+    }
+
+    cite {
+      font-style: 11px;
+    }
   }
 }
 
@@ -354,6 +391,12 @@ blockquote.is-style-large {
     margin: 40px auto;
     width: 65%;
   }
+
+  @media (max-width: $tabletDown) {
+    .aligncenter {
+      width: 90%;
+    }
+  }
 }
 
 .wp-block-columns {
@@ -376,6 +419,21 @@ blockquote.is-style-large {
 
     img {
       width: 100%;
+    }
+  }
+
+  @media (max-width: $tabletDown) {
+    &.has-2-columns {
+      flex-direction: column;
+
+      .wp-block-image {
+        margin: 0;
+      }
+
+      > * {
+        width: 100%;
+        margin: 1% 0;
+      }
     }
   }
 }
