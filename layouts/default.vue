@@ -526,7 +526,7 @@ blockquote.is-style-large {
 
     > * {
       width: 100%;
-      margin: 0 auto 96px;
+      margin: 0 auto 48px;
     }
 
     &.has-media-on-the-right {

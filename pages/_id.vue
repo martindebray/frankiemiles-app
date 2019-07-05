@@ -3,7 +3,7 @@
     <Hero v-if="page._embedded['wp:featuredmedia']" :data="page" type="normal" />
 
     <div v-if="page" class>
-      <div v-if="page.content.rendered" v-html="page.content.rendered" class="markup" />
+      <div v-if="page.content.rendered" v-html="page.content.rendered" class="plain markup" />
     </div>
 
     <div v-else>FAILURE</div>
@@ -50,6 +50,28 @@ export default {
 </script>
 
 <style lang="scss">
+.plain {
+  margin-top: 150px;
+  margin-bottom: 150px;
+
+  @media (max-width: $tablet) {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
+  @media (max-width: $tabletDown) {
+    margin-top: 0px;
+    margin-bottom: 80px;
+
+    &.markup {
+      .h3,
+      h3 {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
 .markup {
   h3,
   .h3 {
