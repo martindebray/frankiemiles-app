@@ -2,7 +2,7 @@
   <div>
     <Hero v-if="page._embedded['wp:featuredmedia']" :data="page" type="normal" />
 
-    <div v-if="page" class="wrap">
+    <div v-if="page" class>
       <div v-if="page.content.rendered" v-html="page.content.rendered" class="markup" />
     </div>
 
@@ -48,3 +48,40 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.markup {
+  h3,
+  .h3 {
+    margin: 54px auto 84px;
+  }
+
+  p,
+  .p {
+    margin: 32px auto;
+  }
+
+  > * {
+    &:not(.wide),
+    &:not(.wp-block-image) {
+      padding: 0 2%;
+      max-width: 610px;
+    }
+
+    &.wide,
+    &.columns-5,
+    &.alignwide {
+      padding: 0 2%;
+      max-width: 1146px;
+    }
+
+    > .wp-block-columns.has-2-columns {
+      padding: 0 3.5%;
+      max-width: initial;
+    }
+  }
+}
+</style>
+
+
+

@@ -450,7 +450,7 @@ export default {
       &:hover,
       &.nuxt-link-active {
         ~ div > .menu-sub {
-          height: 60px;
+          height: 75px;
         }
       }
     }
@@ -469,17 +469,19 @@ export default {
     width: 100%;
     position: absolute;
     transform: translateY(-16px);
-    padding-top: 30px;
+    padding-top: 34px;
     z-index: -1;
     width: auto;
 
     overflow: hidden;
     height: 0;
+    /* height: 75px; */
+    background: $purewhite;
     transition: all 0.1s ease;
 
     &:hover {
       @media (min-width: $tabletUp) {
-        height: 60px;
+        height: 75px;
       }
     }
   }
@@ -520,7 +522,7 @@ export default {
     }
 
     .menu-sub {
-      left: 100%;
+      left: 0;
       right: 0;
       top: 0;
       bottom: 0;
@@ -547,6 +549,8 @@ export default {
       line-height: normal;
       letter-spacing: 1.2px;
 
+      transform: translateX(100%);
+
       > div {
         &:not(.menu-sub-header) {
           cursor: pointer;
@@ -572,7 +576,7 @@ export default {
       z-index: 10;
 
       .menu-sub {
-        left: 0;
+        transform: translateX(0);
       }
     }
   }
@@ -581,11 +585,12 @@ export default {
 #header.trigger {
   &::before {
     /* background: rgba(255, 255, 255, 1); */
-    height: 176px;
+    height: 130px;
   }
 
   #burger {
     .icon {
+      transform: translateY(1px);
       /* transform: rotate(90deg); */
 
       rect {

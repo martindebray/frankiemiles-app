@@ -121,6 +121,13 @@ h1 {
   line-height: 1.06;
   letter-spacing: 1.5px;
   margin-bottom: 16px;
+
+  @media (max-width: $tabletDown) {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.71px;
+  }
 }
 
 .h2,
@@ -149,6 +156,10 @@ h3 {
   @media (max-width: $mediumDown) {
     font-size: 32px;
   }
+
+  &.wide {
+    max-width: 1300px !important;
+  }
 }
 
 p.has-large-font-size {
@@ -159,9 +170,14 @@ p.has-large-font-size {
   line-height: 1.64;
   letter-spacing: normal;
   color: #090909;
+
+  &.wide {
+    max-width: 1300px !important;
+  }
 }
 
-p {
+p,
+blockquote {
   font-size: 16px;
   font-weight: 300;
   font-style: normal;
@@ -171,9 +187,14 @@ p {
   color: #090909;
 
   margin: 18px auto;
+
+  &.wide {
+    max-width: 1300px !important;
+  }
 }
 
-p.has-small-font-size {
+p.has-small-font-size,
+blockquote {
   font-size: 14px;
   font-weight: 300;
   font-style: normal;
@@ -181,6 +202,34 @@ p.has-small-font-size {
   line-height: 1.93;
   letter-spacing: normal;
   color: #090909;
+
+  &.wide {
+    max-width: 1300px !important;
+  }
+}
+
+blockquote {
+  font-size: 16px;
+  font-family: $serif;
+
+  p {
+    margin-bottom: 8px !important;
+  }
+
+  cite {
+    font-size: 12px;
+    color: #787878;
+  }
+}
+
+blockquote.is-style-large {
+  p {
+    font-size: 20px;
+  }
+
+  cite {
+    font-size: 14px;
+  }
 }
 
 .t-cat {
@@ -374,6 +423,10 @@ p.has-small-font-size {
   margin: 40px auto;
   width: 100%;
 
+  &.wide {
+    max-width: 1300px !important;
+  }
+
   > * {
     width: 46%;
     margin: 0 1%;
@@ -438,6 +491,8 @@ figcaption {
 }
 
 .markup {
+  padding-top: 32px;
+
   p {
     a {
       font-weight: normal;
@@ -449,6 +504,7 @@ figcaption {
     }
   }
 }
+
 /**
  * Page Animations
  */

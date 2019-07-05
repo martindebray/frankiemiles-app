@@ -118,6 +118,11 @@ export default {
   }
 
   &-head {
+    h1 {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
     h2 {
       font-size: 24px;
       font-weight: 300;

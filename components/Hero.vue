@@ -23,7 +23,7 @@
     />
     <div class="metas center">
       <h1 class="h1">{{data.title.rendered}}</h1>
-      <p v-if="data.type" class="t-cat">{{data.type.toUpperCase()}}</p>
+      <p v-if="data.type !== `page`" class="t-cat">{{data.type.toUpperCase()}}</p>
     </div>
   </div>
 </template>
