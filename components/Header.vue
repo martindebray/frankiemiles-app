@@ -280,7 +280,7 @@ export default {
       this.menuActive = !this.menuActive;
     },
     triggerMenuMobile(event) {
-      if (event.target.children.length > 1) {
+      if (event.target.children.length > 1 || event.target.nodeName === "A") {
         this.menuMobileActive = !this.menuMobileActive;
 
         if (this.menuMobileActive === true) {
@@ -554,7 +554,7 @@ export default {
       > div {
         &:not(.menu-sub-header) {
           cursor: pointer;
-          padding: 14px 0;
+          /* padding: 14px 0; */
           margin-right: 0;
           border-bottom: 1px solid #c8c7cc;
 
@@ -577,6 +577,18 @@ export default {
 
       .menu-sub {
         transform: translateX(0);
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  #menu {
+    .triggered {
+      z-index: 10;
+
+      ~ div .menu-sub {
+        height: 75px;
       }
     }
   }

@@ -96,6 +96,8 @@ export default {
   }
 
   @media (max-width: $tabletDown) {
+    height: 80vh;
+
     .metas {
       h1 {
         line-height: 1.36;
