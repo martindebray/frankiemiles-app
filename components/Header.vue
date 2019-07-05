@@ -452,6 +452,8 @@ export default {
       &.nuxt-link-active {
         ~ div > .menu-sub {
           height: 75px;
+          padding-top: 34px;
+          background: rgba(255, 255, 255, 1);
         }
       }
     }
@@ -477,12 +479,13 @@ export default {
     overflow: hidden;
     height: 0;
     /* height: 75px; */
-    background: $purewhite;
+    background: rgba(255, 255, 255, 0);
     transition: all 0.1s ease;
 
     &:hover {
       @media (min-width: $tabletUp) {
         height: 75px;
+        background: rgba(255, 255, 255, 1);
       }
     }
   }
@@ -597,7 +600,7 @@ export default {
 
 #header.trigger {
   &::before {
-    /* background: rgba(255, 255, 255, 1); */
+    background: rgba(255, 255, 255, 1);
     height: 130px;
   }
 
