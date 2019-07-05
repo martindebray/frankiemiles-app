@@ -16,7 +16,6 @@ import CustomHeader from "~/components/Header";
 import CustomFooter from "~/components/Footer";
 
 Vue.use(VueAnimate);
-Vue.use(VueTouch);
 
 export default {
   components: {
