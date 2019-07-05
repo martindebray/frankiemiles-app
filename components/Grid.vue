@@ -11,11 +11,11 @@
           :src="item._embedded['wp:featuredmedia'][0].source_url"
           :title="item._embedded['wp:featuredmedia'][0].title.rendered"
         />
+        <p class="t-cat" v-if="item.type === `projects`">Comissioned Projects</p>
         <p
-          v-if="item._embedded && item._embedded['wp:term']"
+          v-else-if="item._embedded && item._embedded['wp:term']"
           class="t-cat"
         >{{item._embedded["wp:term"][0][0].name}}</p>
-        <p class="t-cat" v-else-if="item.type === `projects`">Comissioned Projects</p>
         <p class="t-cat" v-else>{{item.type}}</p>
         <h3 v-if="item.title" class="grid-item-title">{{item.title.rendered}}</h3>
       </nuxt-link>

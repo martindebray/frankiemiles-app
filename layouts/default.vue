@@ -81,6 +81,11 @@ main {
       line-height: 1.78;
       letter-spacing: normal;
       color: #747474;
+
+      @media (max-width: $mediumDown) {
+        font-size: 16px;
+        line-height: 1.5;
+      }
     }
   }
 
@@ -140,7 +145,7 @@ h2 {
   letter-spacing: 0.6px;
 
   @media (max-width: $mediumDown) {
-    font-size: 32px;
+    font-size: 26px;
   }
 }
 
@@ -300,7 +305,7 @@ blockquote.is-style-large {
 }
 
 .cta {
-  margin: 96px auto;
+  margin: 96px auto !important;
 
   a {
     border-radius: 25.5px;
@@ -320,9 +325,12 @@ blockquote.is-style-large {
     padding: 2px 16px;
     text-transform: uppercase;
     text-decoration: none !important;
+    transition: 0.3s ease;
 
     &:hover {
       background: rgb(241, 87, 49);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+      transform: translateY(-2px);
     }
   }
 
@@ -330,8 +338,7 @@ blockquote.is-style-large {
   transition: 0.3s ease;
 
   @media (max-width: $tabletDown) {
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 40px auto !important;
   }
 
   &.hidden {
