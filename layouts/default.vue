@@ -254,6 +254,11 @@ blockquote.is-style-large {
     letter-spacing: normal;
     text-align: center;
     color: #747474;
+
+    @media (max-width: $tabletDown) {
+      font-size: 16px;
+      line-height: 1.5;
+    }
   }
 }
 

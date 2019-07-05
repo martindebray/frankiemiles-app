@@ -96,7 +96,7 @@ export default {
   }
 
   @media (max-width: $tabletDown) {
-    height: 80vh;
+    height: 90vh;
 
     .metas {
       h1 {

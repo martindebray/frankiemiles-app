@@ -353,8 +353,9 @@ export default {
 
   @media (max-width: $tabletDown) {
     .sup {
-      margin-top: 24px;
+      margin-top: 30px;
       margin-bottom: 16px;
+      padding: 0 4.5%;
     }
 
     .m-social {
@@ -554,7 +555,7 @@ export default {
       > div {
         &:not(.menu-sub-header) {
           cursor: pointer;
-          /* padding: 14px 0; */
+          padding: 14px 0;
           margin-right: 0;
           border-bottom: 1px solid #c8c7cc;
 

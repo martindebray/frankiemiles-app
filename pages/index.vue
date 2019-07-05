@@ -218,7 +218,7 @@ export default {
   padding: 0 12.9%;
 
   @media (max-width: $tablet) {
-    padding: 0 4.5%;
+    padding: 0 6.5%;
   }
 }
 
@@ -287,11 +287,31 @@ export default {
   }
 
   @media (max-width: $tabletDown) {
+    margin-top: 0;
+
     > div {
       width: 100%;
-      margin-top: 48px;
+      margin-top: 32px;
       margin-right: 0 !important;
       margin-left: 0 !important;
+    }
+
+    .t-cat {
+      margin-top: 12px;
+    }
+
+    .wall-title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.15px;
+      margin: 15px 0;
+    }
+
+    .t-excerpt p {
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.67;
+      margin-bottom: 0;
     }
   }
 }
