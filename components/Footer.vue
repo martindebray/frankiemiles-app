@@ -47,7 +47,7 @@
           </nuxt-link>
         </div>
         <div class="item imaged">
-          <nuxt-link to="/about">
+          <nuxt-link to="/projects">
             <img
               src="https://debray.space/frankiemiles/wp-content/uploads/2019/05/Rectangle@2x.jpg"
               style="opacity:0;"
