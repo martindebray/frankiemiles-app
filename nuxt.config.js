@@ -100,24 +100,14 @@ export default {
               });
 
               return axios
-                .get(`https://debray.space/frankiemiles/wp-json/wp/v2/press`)
+                .get(`https://debray.space/frankiemiles/wp-json/wp/v2/projects`)
                 .then(res => {
                   res.data.map(post => {
-                    data.push(`press/${post.slug}`);
+                    data.push(`projects/${post.slug}`);
                   });
-
-                  return axios
-                    .get(
-                      `https://debray.space/frankiemiles/wp-json/wp/v2/projects`
-                    )
-                    .then(res => {
-                      res.data.map(post => {
-                        data.push(`projects/${post.slug}`);
-                      });
-                    })
-                    .then(() => {
-                      return data;
-                    });
+                })
+                .then(() => {
+                  return data;
                 });
             });
         });
