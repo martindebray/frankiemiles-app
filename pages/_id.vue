@@ -56,12 +56,12 @@ export default {
 
   &.markup {
     h3.h3 {
-      margin: 24px 0 12px;
+      margin: 24px auto 12px;
     }
 
     p,
     .p {
-      margin: 12px 0 8px;
+      margin: 12px auto 8px;
     }
   }
 
@@ -76,9 +76,14 @@ export default {
     margin-bottom: 80px;
 
     &.markup {
-      .h3,
-      h3 {
-        margin-bottom: 0;
+      h3,
+      .h3 {
+        margin: 24px auto 32px;
+      }
+
+      p,
+      .p {
+        margin: 12px auto;
       }
     }
   }
