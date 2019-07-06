@@ -68,25 +68,47 @@ export default {
       return date.format("MMM DD, YYYY");
     }
   },
+  watch: {
+    $route(to, from) {
+      this.show = false;
+      // console.log(
+      //   "qwe",
+      //   this,
+      //   ($nuxt._route.hash.replace("#", "") + "").replace(/%20/g, " ")
+      // );
+
+      // this.$refs["search-field"].value = "qwe";
+      setTimeout(() => {
+        this.loadPosts("route");
+      }, 10);
+    }
+  },
   methods: {
     submitForm() {
       this.searchVal = this.$refs["search-field"].value.replace(/%20/g, " ");
 
       window.location.hash = this.$refs["search-field"].value;
     },
-    loadPosts() {
+    loadPosts(type) {
       let bigArray = [];
+      let _url = type ? window.location.hash : this.$refs["search-field"].value;
 
-      if (this.$refs["search-field"].value.length >= 0) {
+      _url = _url.replace("#", "").replace(/%20/g, " ");
+
+      if (_url.length >= 0) {
         this.sources.forEach((source, index) => {
           if (source.on) {
-            var searchUrl = this.generateUrl(source);
+            var searchUrl = this.generateUrl(source, _url);
+            this.$refs["search-field"].value = _url;
+
             this.$axios.get(searchUrl).then(res => {
               res.data.map((k, i) => {
                 bigArray.push(k);
               });
 
               if (bigArray.length > 0) {
+                this.$refs["search-field"].value = _url;
+
                 this.results = bigArray;
                 this.feedbackMsg =
                   bigArray.length === 1
@@ -99,6 +121,10 @@ export default {
               }
 
               this.resultLength = bigArray.length;
+
+              setTimeout(() => {
+                this.$refs["search-field"].value = _url;
+              }, 0);
             });
           }
         });
@@ -107,9 +133,9 @@ export default {
         this.nothing = true;
       }
     },
-    generateUrl(source) {
-      if (this.searchQuery && this.searchQuery.length > 0) {
-        return source.url + `&search=` + this.searchQuery;
+    generateUrl(source, _url) {
+      if (_url && _url.length > 0) {
+        return source.url + `&search=` + _url;
       } else {
         return source.url;
       }
