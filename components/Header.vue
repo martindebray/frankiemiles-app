@@ -259,7 +259,7 @@
             </g>
           </g>
         </svg>
-        <form :action="`/search/${this.val}`" @submit="submitForm" ref="form">
+        <form :action="`/search#${this.val}`" @submit="submitForm" ref="form">
           <input ref="search-field" type="text" class="search-field h2" placeholder="Suche" />
         </form>
       </div>

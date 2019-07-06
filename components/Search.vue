@@ -3,13 +3,16 @@
     <section>
       <div class="h2 search-head">
         <span>Search for</span>
-        <input
-          ref="search-field"
-          type="text"
-          class="search-field h2"
-          v-model.lazy="searchQuery"
-          v-on:change="loadPosts"
-        />
+        <form @submit="submitForm">
+          <input
+            ref="search-field"
+            type="text"
+            class="search-field h2"
+            v-model.lazy="searchQuery"
+            v-on:change="loadPosts"
+            :placeholder="$nuxt._route.hash ? this.searchVal : ``"
+          />
+        </form>
 
         <p
           :class="`result no-result ${resultLength > 0 ? `hidden` : ``}`"
@@ -36,7 +39,7 @@ export default {
   },
   data() {
     return {
-      searchQuery: this.query,
+      searchQuery: this.query || $nuxt._route.hash.replace("#", ""),
       sources: [
         {
           name: "Posts",
@@ -54,7 +57,8 @@ export default {
       results: [],
       nothing: true,
       feedbackMsg: "",
-      resultLength: 0
+      resultLength: 0,
+      searchVal: ($nuxt._route.hash.replace("#", "") + "").replace(/%20/g, " ")
     };
   },
   filters: {
@@ -65,6 +69,11 @@ export default {
     }
   },
   methods: {
+    submitForm() {
+      this.searchVal = this.$refs["search-field"].value.replace(/%20/g, " ");
+
+      window.location.hash = this.$refs["search-field"].value;
+    },
     loadPosts() {
       let bigArray = [];
 
@@ -100,7 +109,7 @@ export default {
     },
     generateUrl(source) {
       if (this.searchQuery && this.searchQuery.length > 0) {
-        return source.url + `&search=` + encodeURI(this.searchQuery);
+        return source.url + `&search=` + this.searchQuery;
       } else {
         return source.url;
       }
@@ -108,6 +117,8 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+      this.loadPosts();
+
       if (this.load) {
         this.loadPosts();
       } else {
