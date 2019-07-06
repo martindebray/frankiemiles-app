@@ -171,8 +171,37 @@ export default {
 
     &.base {
       .artikel-head {
-        padding: 0 7.5%;
+        padding: 0;
       }
+    }
+
+    &.base,
+    &.journal {
+      .artikel-markup {
+        > *:not(.wide) {
+          &:not(.wp-block-image) {
+            padding: 0 7.5%;
+          }
+        }
+
+        > *.wide {
+          padding: 0 7.5%;
+        }
+
+        > .wp-block-columns.has-2-columns {
+          padding: 0 3.5%;
+        }
+      }
+    }
+
+    h3,
+    .h3 {
+      margin: 24px auto 32px;
+    }
+
+    p,
+    .p {
+      margin: 12px auto;
     }
   }
 }

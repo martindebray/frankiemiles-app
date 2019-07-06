@@ -400,6 +400,8 @@ blockquote.is-style-large {
   }
 
   @media (max-width: $tabletDown) {
+    margin: 32px auto 24px;
+
     .aligncenter {
       width: 90%;
     }

@@ -68,10 +68,11 @@ export default {
   @media (max-width: $tablet) {
     margin-top: 80px;
     margin-bottom: 80px;
+    padding: 0 7.5%;
   }
 
   @media (max-width: $tabletDown) {
-    margin-top: 0px;
+    margin-top: 110px;
     margin-bottom: 80px;
 
     &.markup {
