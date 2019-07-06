@@ -54,6 +54,17 @@ export default {
   margin-top: 150px;
   margin-bottom: 150px;
 
+  &.markup {
+    h3.h3 {
+      margin: 24px 0 12px;
+    }
+
+    p,
+    .p {
+      margin: 12px 0 8px;
+    }
+  }
+
   @media (max-width: $tablet) {
     margin-top: 80px;
     margin-bottom: 80px;

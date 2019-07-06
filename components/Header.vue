@@ -135,7 +135,7 @@
         </div>
         <nuxt-link to="/search">
           <svg
-            id="search"
+            class="search search-main"
             width="14px"
             height="14px"
             viewBox="0 0 14 14"
@@ -239,6 +239,30 @@
           </div>
         </div>
       </div>
+
+      <div class="search-big">
+        <svg
+          class="search"
+          width="14px"
+          height="14px"
+          viewBox="0 0 14 14"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g transform="translate(-1186.000000, -25.000000)" fill="#FFFFFF" fill-rule="nonzero">
+              <path
+                d="M1199.82857,38.0057143 L1196.46286,34.64 C1197.29714,33.6228571 1197.8,32.32 1197.8,30.9 C1197.8,27.6428571 1195.15714,25 1191.9,25 C1188.64,25 1186,27.6428571 1186,30.9 C1186,34.1571429 1188.64,36.8 1191.9,36.8 C1193.32,36.8 1194.62,36.3 1195.63714,35.4657143 L1199.00286,38.8285714 C1199.23143,39.0571429 1199.6,39.0571429 1199.82857,38.8285714 C1200.05714,38.6028571 1200.05714,38.2314286 1199.82857,38.0057143 Z M1191.9,35.6257143 C1189.29143,35.6257143 1187.17143,33.5057143 1187.17143,30.9 C1187.17143,28.2942857 1189.29143,26.1714286 1191.9,26.1714286 C1194.50571,26.1714286 1196.62857,28.2942857 1196.62857,30.9 C1196.62857,33.5057143 1194.50571,35.6257143 1191.9,35.6257143 Z"
+                id="Shape"
+              />
+            </g>
+          </g>
+        </svg>
+        <form :action="`/search/${this.val}`" @submit="submitForm" ref="form">
+          <input ref="search-field" type="text" class="search-field h2" placeholder="Suche" />
+        </form>
+      </div>
     </nav>
   </div>
 </template>
@@ -255,10 +279,19 @@ export default {
       menuMobileActive: false,
       menuTheme: "dark",
       categories: [],
-      url: " "
+      url: "",
+      val: ""
     };
   },
   methods: {
+    submitForm(event) {
+      event.preventDefault();
+      this.val = this.$refs["search-field"].value;
+
+      setTimeout(() => {
+        this.$refs["form"].submit();
+      }, 10);
+    },
     getMenu(url) {
       let data = null;
 
@@ -444,6 +477,43 @@ export default {
 
   .menu-link {
     text-transform: uppercase;
+  }
+
+  .search-big {
+    padding: 12px 14px !important;
+    margin-top: 18px;
+    background-color: rgba(105, 105, 105, 0.25);
+
+    display: flex;
+    align-items: center;
+
+    form {
+      margin-left: 11px;
+
+      input {
+        font-size: 12px;
+        background: none;
+        outline: none;
+        border: none;
+        color: $purewhite;
+
+        &::-webkit-input-placeholder {
+          color: $purewhite;
+        }
+
+        &:-ms-input-placeholder {
+          color: $purewhite;
+        }
+
+        &::placeholder {
+          color: $purewhite;
+        }
+      }
+    }
+
+    @media (min-width: $tablet) {
+      display: none;
+    }
   }
 
   @media (min-width: $tabletUp) {
@@ -681,7 +751,7 @@ export default {
     }
   }
 
-  #search {
+  .search-main {
     g {
       fill: $purewhite;
     }
@@ -761,7 +831,7 @@ export default {
     }
   }
 
-  #search {
+  .search-main {
     g {
       fill: $pureblack;
     }
