@@ -90,21 +90,21 @@ export default {
       let data = [];
 
       return axios
-        .get(`https://debray.space/frankiemiles/wp-json/wp/v2/pages`)
+        .get(`https://frankiemiles.debray.space/wp-json/wp/v2/pages`)
         .then(res => {
           res.data.map(page => {
             data.push(page.slug);
           });
 
           return axios
-            .get(`https://debray.space/frankiemiles/wp-json/wp/v2/journal`)
+            .get(`https://frankiemiles.debray.space/wp-json/wp/v2/journal`)
             .then(res => {
               res.data.map(post => {
                 data.push(`journal/${post.slug}`);
               });
 
               return axios
-                .get(`https://debray.space/frankiemiles/wp-json/wp/v2/projects`)
+                .get(`https://frankiemiles.debray.space/wp-json/wp/v2/projects`)
                 .then(res => {
                   res.data.map(post => {
                     data.push(`projects/${post.slug}`);

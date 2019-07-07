@@ -36,7 +36,7 @@
         <div class="item imaged">
           <nuxt-link to="/about">
             <img
-              src="https://debray.space/frankiemiles/wp-content/uploads/2019/05/Rectangle@2x.jpg"
+              src="https://frankiemiles.debray.space/wp-content/uploads/2019/05/Rectangle@2x.jpg"
             />
             <div>
               <div>
@@ -49,7 +49,7 @@
         <div class="item imaged">
           <nuxt-link to="/projects">
             <img
-              src="https://debray.space/frankiemiles/wp-content/uploads/2019/05/Rectangle@2x.jpg"
+              src="https://frankiemiles.debray.space/wp-content/uploads/2019/05/Rectangle@2x.jpg"
               style="opacity:0;"
             />
             <div>
