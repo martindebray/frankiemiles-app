@@ -1,5 +1,9 @@
 <template>
-  <div id="header" :data-theme="menuTheme" :class="`${menuActive ? `trigger` : ``}`">
+  <div
+    id="header"
+    :data-theme="menuTheme"
+    :class="`${menuActive ? `trigger` : ``} ${scrolled ? `scrolled` : ``}`"
+  >
     <div class="sup">
       <div @click="triggerMenu" id="burger">
         <svg
@@ -280,7 +284,8 @@ export default {
       menuTheme: "dark",
       categories: [],
       url: "",
-      val: ""
+      val: "",
+      scrolled: false
     };
   },
   methods: {
@@ -332,11 +337,22 @@ export default {
           document.querySelector(".triggered").classList.remove("triggered");
         }
       }
+    },
+    handleScroll() {
+      const _height = document.querySelector(".hero")
+        ? document.querySelector(".hero").offsetHeight
+        : 9999999999;
+
+      this.scrolled = window.scrollY > _height;
     }
   },
   mounted() {
     this.url = process.env.API;
     this.getMenu(this.url);
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
@@ -353,7 +369,11 @@ export default {
   display: flex;
   flex-flow: column;
   align-items: center;
-  padding-bottom: 76px;
+
+  &:not([data-theme="white"]) {
+    background: $purewhite;
+  }
+  /* padding-bottom: 76px; */
 
   &::before {
     content: "";
@@ -803,8 +823,13 @@ export default {
   }
 }
 
+#header.scrolled {
+  background: $purewhite;
+}
+
 #header[data-theme="dark"],
-#header.trigger {
+#header.trigger,
+#header.scrolled {
   color: $pureblack !important;
 
   a {

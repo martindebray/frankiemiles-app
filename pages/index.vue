@@ -12,8 +12,6 @@
       </Slide>
     </Carousel>
 
-    <div id="scroll">Scroll down</div>
-
     <div v-html="page.content.rendered" class="t-wrap t-big-serif" />
 
     <div class="favorites">
@@ -23,7 +21,7 @@
     <Hero v-if="hightligh" :data="hightligh" type="home" class="higlight" />
 
     <div class="wall" v-if="posts">
-      <div v-for="(i, k) in posts">
+      <div v-for="(i, k) in posts" :key="k">
         <div>
           <nuxt-link :to="`/${i.type}/${i.slug}`">
             <img :src="i._embedded['wp:featuredmedia'][0].source_url" />
@@ -238,11 +236,13 @@ export default {
 
   .wall-title {
     font-size: 24px;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
+    font-weight: 400;
     letter-spacing: 0.8px;
+    margin: 6px auto;
+  }
+
+  p {
+    margin: 6px auto;
   }
 
   > div {
@@ -266,7 +266,7 @@ export default {
     }
 
     .t-cat {
-      margin-top: 28px;
+      margin-top: 20px;
     }
 
     .arrow {
@@ -307,9 +307,8 @@ export default {
 
       .wall-title {
         font-size: 18px;
-        font-weight: 300;
         letter-spacing: -0.15px;
-        margin: 15px 0;
+        /* margin: 15px 0 !important; */
       }
 
       .t-excerpt p {

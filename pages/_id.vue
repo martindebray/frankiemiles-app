@@ -55,8 +55,9 @@ export default {
   margin-bottom: 150px;
 
   &.markup {
-    h3.h3 {
-      rmargin: 24px auto 12px;
+    h3.h3,
+    h3 {
+      margin: 24px auto 12px;
     }
 
     p,
