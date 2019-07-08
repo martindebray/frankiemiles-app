@@ -1,7 +1,7 @@
 <template>
   <footer id="footer" v-if="menu[0]">
     <div class="sup m-social">
-      <div v-for="item in social.items">
+      <div v-for="(item, k) in social.items" :key="k">
         <a :href="item.url" :title="item.title" :class="item.title" target="_blank">
           <img v-if="item.title.toLowerCase() === `youtube`" src="~/assets/img/youtube.svg" />
           <img
@@ -20,11 +20,11 @@
     <div class="sub">
       <div class="left">
         <ul v-if="menu">
-          <li v-for="i in menu">
+          <li v-for="(i, k) in menu" :key="k">
             <a :href="i.url">{{i.title}}</a>
 
             <ul v-if="i.child_items">
-              <li v-for="j in i.child_items">
+              <li v-for="(j, l) in i.child_items" :key="l">
                 <a :href="j.url.replace(url, '')">{{j.title}}</a>
               </li>
             </ul>
@@ -180,14 +180,14 @@ export default {
             margin-top: 12px;
 
             > li {
-              margin-top: 6px;
+              margin-top: 2px;
 
               > a {
                 font-size: 12px;
                 font-weight: 300;
                 font-style: normal;
                 font-stretch: normal;
-                line-height: 2;
+                line-height: 1;
                 letter-spacing: 0.3px;
                 color: #828282;
 

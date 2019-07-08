@@ -38,7 +38,7 @@ export default {
 <style lang="scss">
 .hero {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   position: relative;
   overflow: hidden;
 

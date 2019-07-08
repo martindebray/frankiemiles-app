@@ -12,6 +12,8 @@
       </Slide>
     </Carousel>
 
+    <div id="scroll">Scroll down</div>
+
     <div v-html="page.content.rendered" class="t-wrap t-big-serif" />
 
     <div class="favorites">
@@ -198,6 +200,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#scroll {
+  text-align: center;
+  padding: 14px 0;
+}
 .t-wrap {
   padding: 0 20%;
   margin: 62px auto 74px;
