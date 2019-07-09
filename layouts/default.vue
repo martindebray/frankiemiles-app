@@ -490,8 +490,8 @@ blockquote.is-style-large {
   width: fit-content;
   justify-content: center;
   justify-items: center;
-  align-content: center;
-  align-items: center;
+  /* align-content: center; */
+  /* align-items: center; */
   margin: 40px auto;
   width: 100%;
 
@@ -506,6 +506,12 @@ blockquote.is-style-large {
 
   img {
     width: 100%;
+  }
+
+  div {
+    @media (min-width: $tabletUp) {
+      padding-top: 70px;
+    }
   }
 
   &.has-media-on-the-right {

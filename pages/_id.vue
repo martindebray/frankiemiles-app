@@ -64,6 +64,14 @@ export default {
     .p {
       margin: 12px auto 8px;
     }
+
+    a {
+      color: $pureblack;
+
+      &:hover {
+        color: #999999;
+      }
+    }
   }
 
   @media (max-width: $tablet) {

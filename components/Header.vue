@@ -343,7 +343,9 @@ export default {
         ? document.querySelector(".hero").offsetHeight
         : 9999999999;
 
-      this.scrolled = window.scrollY > _height;
+      const _headerHeight = document.getElementById("header").offsetHeight / 2;
+
+      this.scrolled = window.scrollY > _height - _headerHeight;
     }
   },
   mounted() {
@@ -488,7 +490,10 @@ export default {
 }
 
 #menu {
-  display: none;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.1s ease-in;
 
   div {
     letter-spacing: 1.2px;
@@ -703,8 +708,8 @@ export default {
 
 #header.trigger {
   &::before {
-    background: rgba(255, 255, 255, 1);
     height: 130px;
+    transform: translateX(0);
   }
 
   #burger {
@@ -727,7 +732,8 @@ export default {
   }
 
   #menu {
-    display: flex;
+    opacity: 1;
+    pointer-events: initial;
   }
 
   @media (max-width: $tabletDown) {
