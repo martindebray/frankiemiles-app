@@ -343,7 +343,7 @@ export default {
         ? document.querySelector(".hero").offsetHeight
         : 9999999999;
 
-      this.scrolled = window.scrollY > 100;
+      this.scrolled = window.scrollY > _height;
     }
   },
   mounted() {
