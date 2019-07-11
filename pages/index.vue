@@ -15,14 +15,20 @@
 
     <div v-html="page.content.rendered" class="t-wrap t-big-serif" v-animate="'r-slide-down'" />
 
-    <div class="favorites">
+    <div class="favorites" v-animate="'r-slide-down'">
       <Grid class="grid3 grid-sm" :data="favs" />
     </div>
 
-    <Hero v-if="hightligh" :data="hightligh" type="home" class="higlight" />
+    <Hero
+      v-if="hightligh"
+      :data="hightligh"
+      type="home"
+      class="higlight"
+      v-animate="'r-slide-down'"
+    />
 
     <div class="wall" v-if="posts">
-      <div v-for="(i, k) in posts" :key="k">
+      <div v-for="(i, k) in posts" :key="k" v-animate="'r-slide-down'">
         <div>
           <nuxt-link :to="`/${i.type}/${i.slug}`">
             <img :src="i._embedded['wp:featuredmedia'][0].source_url" />

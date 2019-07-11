@@ -15,6 +15,7 @@ import VueAnimate from "vue-animate-scroll";
 import CustomHeader from "~/components/Header";
 import CustomFooter from "~/components/Footer";
 
+// Vue.use(VueAnimate);
 Vue.use(VueAnimate);
 
 export default {
@@ -611,7 +612,7 @@ figcaption {
  */
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.4s;
+  transition: opacity 0.2s;
 }
 
 .page-enter,
@@ -624,12 +625,12 @@ figcaption {
  */
 .animate {
   transition-delay: 0.025s;
-  transition-duration: 0.2s;
+  transition-duration: 0.4s;
   transition-timing-function: cubic-bezier($cubic1);
 
   @media (max-width: $tabletDown) {
     transition-delay: 0s;
-    transition-duration: 0.1s;
+    transition-duration: 0.2s;
   }
 }
 

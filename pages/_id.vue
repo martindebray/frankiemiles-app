@@ -57,7 +57,7 @@ export default {
   &.markup {
     h3.h3,
     h3 {
-      margin: 24px auto 12px;
+      margin: 42px auto;
     }
 
     p,

@@ -1,11 +1,11 @@
 <template>
   <div :class="`artikel ${post.type === `journal` ? `journal` : `base`}`">
-    <div class="artikel-head">
+    <div class="artikel-head" v-animate="'r-slide-down'">
       <p class="t-cat" v-if="post.type === `projects`">{{post.type}}: {{post.title.rendered}}</p>
       <h1 class="h1">{{post.title.rendered}}</h1>
       <p class="t-cat" v-if="post.type !== `projects`">{{post._embedded['wp:term'][0][0].name}}</p>
     </div>
-    <figure class="artikel-hero">
+    <figure class="artikel-hero" v-animate="'r-slide-down'">
       <img
         v-if="post._embedded['wp:featuredmedia']"
         :src="post._embedded['wp:featuredmedia'][0].source_url"
@@ -16,12 +16,12 @@
       >{{post._embedded['wp:featuredmedia'][0].caption.rendered}}</figcaption>
     </figure>
 
-    <div v-html="post.content.rendered" class="artikel-markup" />
+    <div v-html="post.content.rendered" class="artikel-markup" v-animate="'r-slide-down'" />
 
-    <p class="cta" v-if="post.type === `projects`">
+    <p class="cta" v-if="post.type === `projects`" v-animate="'r-slide-down'">
       <nuxt-link :to="`/${post.type}`">View all {{post.type}}</nuxt-link>
     </p>
-    <UMayLike v-else :data="post.categories[0]" />
+    <UMayLike v-else :data="post.categories[0]" v-animate="'r-slide-down'" />
   </div>
 </template>
 
@@ -41,6 +41,7 @@ export default {
   },
   mounted() {
     this.url = process.env.API;
+    // const _html = this.data.content.rendered
   },
   head() {
     return {

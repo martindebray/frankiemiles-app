@@ -1,5 +1,5 @@
 <template>
-  <footer id="footer" v-if="menu[0]">
+  <footer id="footer" v-if="menu[0]" v-animate="'r-slide-down'">
     <div class="sup m-social">
       <div v-for="(item, k) in social.items" :key="k">
         <a :href="item.url" :title="item.title" :class="item.title" target="_blank">
