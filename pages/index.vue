@@ -12,7 +12,7 @@
       </Slide>
     </Carousel>
 
-    <div v-html="page.content.rendered" class="t-wrap t-big-serif" />
+    <div v-html="page.content.rendered" class="t-wrap t-big-serif" v-animate="'r-slide-down'" />
 
     <div class="favorites">
       <Grid class="grid3 grid-sm" :data="favs" />

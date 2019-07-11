@@ -266,7 +266,7 @@ export default {
         }
 
         &:last-child {
-          background: #f15731;
+          background: #cbd77f;
 
           .big {
             font-size: 28px;
@@ -287,7 +287,7 @@ export default {
         }
         &:hover {
           .big {
-            color: #f15731;
+            color: #cbd77f;
           }
           background: $pureblack;
         }

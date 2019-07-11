@@ -612,10 +612,10 @@ figcaption {
 
 .r-slide-down {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(140px);
 
   @media (max-width: $tabletDown) {
-    transform: translateY(20px);
+    transform: translateY(120px);
   }
 }
 

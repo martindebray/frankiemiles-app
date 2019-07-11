@@ -2,24 +2,26 @@
   <div class="wrap" id="search">
     <section>
       <div class="h2 search-head">
-        <span>Search for</span>
-        <form @submit="submitForm">
-          <input
-            ref="search-field"
-            type="text"
-            class="search-field h2"
-            v-model.lazy="searchQuery"
-            v-on:change="loadPosts"
-            :placeholder="$nuxt._route.hash ? this.searchVal : ``"
-          />
-        </form>
-
+        <div>
+          <span class="t-search">Search for</span>
+          <form @submit="submitForm">
+            <input
+              ref="search-field"
+              type="text"
+              class="search-field h2"
+              autofocus
+              v-model.lazy="searchQuery"
+              v-on:change="loadPosts"
+              :placeholder="$nuxt._route.hash ? this.searchVal : ``"
+            />
+          </form>
+        </div>
         <p
           :class="`result no-result ${resultLength > 0 ? `hidden` : ``}`"
           v-if="resultLength === 0"
         >
           {{feedbackMsg}}
-          <span class="emoji">:(</span>
+          <span class="emoji" v-if="resultLength === 0">:(</span>
         </p>
         <p class="result" v-if="resultLength > 0">{{feedbackMsg}}</p>
       </div>
@@ -71,13 +73,6 @@ export default {
   watch: {
     $route(to, from) {
       this.show = false;
-      // console.log(
-      //   "qwe",
-      //   this,
-      //   ($nuxt._route.hash.replace("#", "") + "").replace(/%20/g, " ")
-      // );
-
-      // this.$refs["search-field"].value = "qwe";
       setTimeout(() => {
         this.loadPosts("route");
       }, 10);
@@ -95,7 +90,7 @@ export default {
 
       _url = _url.replace("#", "").replace(/%20/g, " ");
 
-      if (_url.length >= 0) {
+      if (_url.length > 0) {
         this.sources.forEach((source, index) => {
           if (source.on) {
             var searchUrl = this.generateUrl(source, _url);
@@ -128,6 +123,9 @@ export default {
             });
           }
         });
+      } else if (_url.length === 0) {
+        this.feedbackMsg = ``;
+        this.nothing = false;
       } else {
         this.feedbackMsg = ``;
         this.nothing = true;
@@ -156,6 +154,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.h2,
+h2 {
+  font-size: 41px;
+
+  @media (max-width: $tabletDown) {
+    font-size: 24px;
+  }
+}
+
 #search {
   .h1 {
     width: 100%;
@@ -184,14 +191,48 @@ export default {
 .search-head {
   text-align: center;
   margin-bottom: 70px;
+
+  > div {
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: $tabletDown) {
+      display: initial;
+    }
+  }
 }
 
 .search-field {
   border: 0;
-  border-bottom: 5px solid $pureblack;
   appearance: none;
   outline: none;
 
   margin-left: 0px;
+  padding-left: 12px;
+  max-width: 300px;
+
+  &:focus {
+    ~ span {
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: $tabletDown) {
+    padding-top: 8px;
+  }
+}
+
+.blinky {
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
 }
 </style>

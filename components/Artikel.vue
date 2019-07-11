@@ -72,6 +72,10 @@ export default {
 
     .artikel-hero {
     }
+
+    .artikel-markup {
+      padding: 0 5%;
+    }
   }
 
   &.base {
