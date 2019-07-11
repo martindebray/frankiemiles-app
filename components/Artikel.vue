@@ -16,7 +16,9 @@
       >{{post._embedded['wp:featuredmedia'][0].caption.rendered}}</figcaption>
     </figure>
 
-    <div v-html="post.content.rendered" class="artikel-markup" v-animate="'r-slide-down'" />
+    <div class="artikel-markup">
+      <Blocks :data="post.blocks" />
+    </div>
 
     <p class="cta" v-if="post.type === `projects`" v-animate="'r-slide-down'">
       <nuxt-link :to="`/${post.type}`">View all {{post.type}}</nuxt-link>
@@ -27,10 +29,12 @@
 
 <script>
 import UMayLike from "~/components/UMayLike";
+import Blocks from "~/components/Blocks";
 
 export default {
   components: {
-    UMayLike
+    UMayLike,
+    Blocks
   },
   props: ["data"],
   data() {
@@ -40,8 +44,8 @@ export default {
     };
   },
   mounted() {
+    // console.log(this.post);
     this.url = process.env.API;
-    // const _html = this.data.content.rendered
   },
   head() {
     return {
@@ -104,21 +108,23 @@ export default {
   &.base,
   &.journal {
     .artikel-markup {
-      > *:not(.wide) {
-        &:not(.wp-block-image) {
-          padding: 0 2%;
-          max-width: 610px;
+      > div > div > div {
+        > *:not(.wide) {
+          &:not(.wp-block-image) {
+            padding: 0 2%;
+            max-width: 610px;
+          }
         }
-      }
 
-      > *.wide {
-        padding: 0 2%;
-        max-width: 1146px;
-      }
+        > *.wide {
+          padding: 0 2%;
+          max-width: 1146px;
+        }
 
-      > .wp-block-columns.has-2-columns {
-        padding: 0 3.5%;
-        max-width: initial;
+        > .wp-block-columns.has-2-columns {
+          padding: 0 3.5%;
+          max-width: initial;
+        }
       }
     }
   }

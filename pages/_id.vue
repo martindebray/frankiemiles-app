@@ -3,7 +3,10 @@
     <Hero v-if="page._embedded['wp:featuredmedia']" :data="page" type="normal" />
 
     <div v-if="page" class>
-      <div v-if="page.content.rendered" v-html="page.content.rendered" class="plain markup" />
+      <!-- <div v-if="page.content.rendered" v-html="page.content.rendered" class="plain markup" /> -->
+      <div class="plain markup">
+        <Blocks :data="page.blocks" />
+      </div>
     </div>
 
     <div v-else>FAILURE</div>
@@ -12,10 +15,12 @@
 
 <script>
 import Hero from "~/components/Hero";
+import Blocks from "~/components/Blocks";
 
 export default {
   components: {
-    Hero
+    Hero,
+    Blocks
   },
   async asyncData({ params, $axios }) {
     let page = await $axios.$get(
@@ -109,23 +114,25 @@ export default {
     margin: 32px auto;
   }
 
-  > * {
-    &:not(.wide),
-    &:not(.wp-block-image) {
-      padding: 0 2%;
-      max-width: 610px;
-    }
+  > div > div > div {
+    > * {
+      &:not(.wide),
+      &:not(.wp-block-image) {
+        padding: 0 2%;
+        max-width: 610px;
+      }
 
-    &.wide,
-    &.columns-5,
-    &.alignwide {
-      padding: 0 2%;
-      max-width: 1146px;
-    }
+      &.wide,
+      &.columns-5,
+      &.alignwide {
+        padding: 0 2%;
+        max-width: 1146px;
+      }
 
-    > .wp-block-columns.has-2-columns {
-      padding: 0 3.5%;
-      max-width: initial;
+      > .wp-block-columns.has-2-columns {
+        padding: 0 3.5%;
+        max-width: initial;
+      }
     }
   }
 }

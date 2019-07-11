@@ -623,7 +623,7 @@ figcaption {
  */
 .animate {
   transition-delay: 0.025s;
-  transition-duration: 0.4s;
+  transition-duration: 0.5s;
   transition-timing-function: cubic-bezier($cubic1);
 
   @media (max-width: $tabletDown) {
