@@ -15,7 +15,6 @@ import VueAnimate from "vue-animate-scroll";
 import CustomHeader from "~/components/Header";
 import CustomFooter from "~/components/Footer";
 
-// Vue.use(VueAnimate);
 Vue.use(VueAnimate);
 
 export default {
@@ -37,8 +36,7 @@ export default {
        * we do not want that
        */
     }
-  },
-  transition: "slide"
+  }
 };
 </script>
 

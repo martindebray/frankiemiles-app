@@ -116,8 +116,6 @@ export default {
       ? (hightligh = hightligh[0])
       : (hightligh = hightligh);
 
-    console.log(page);
-
     let fav1 = await $axios.$get(
       `${process.env.API}/wp-json/wp/v2/${page.acf.favorite_articles.article_1.post_type}?include=${page.acf.favorite_articles.article_1.ID}&_embed=1`
     );

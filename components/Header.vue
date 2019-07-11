@@ -345,7 +345,7 @@ export default {
 
       const _headerHeight = document.getElementById("header").offsetHeight / 2;
 
-      this.scrolled = window.scrollY > 100;
+      this.scrolled = window.scrollY > 77;
     }
   },
   mounted() {
