@@ -6,6 +6,7 @@
       :autoplay-timeout="5000"
       :loop="true"
       :paginationEnabled="false"
+      :navigationEnabled="true"
     >
       <Slide v-for="(i, k) in finalArr.slice(0,3)" :key="k">
         <Hero v-if="i" :data="i.post" type="home" />
@@ -216,6 +217,55 @@ export default {
 </style>
 
 <style lang="scss">
+.VueCarousel-navigation {
+  position: absolute;
+  z-index: 999;
+  top: 50%;
+  width: calc(100% - 60px);
+  left: 30px;
+  height: 80px;
+  transform: translateY(-50%);
+
+  > button {
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+    background-color: $pureblack !important;
+    color: $purewhite !important;
+    transition: 0.1s ease;
+
+    &::after {
+      top: -1px;
+      position: relative;
+    }
+
+    &:hover {
+      background-color: $purewhite !important;
+      color: $pureblack !important;
+    }
+  }
+
+  &-prev {
+    transform: translateY(-50%) !important;
+    font-size: 0;
+
+    &::after {
+      font-size: 16px;
+      content: "<";
+    }
+  }
+
+  &-next {
+    transform: translateY(-50%) !important;
+    font-size: 0;
+
+    &::after {
+      font-size: 16px;
+      content: ">";
+    }
+  }
+}
+
 .favorites {
   display: flex;
   flex-wrap: wrap;

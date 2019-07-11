@@ -172,6 +172,22 @@ h3 {
   }
 }
 
+.t-big-serif {
+  h3 {
+    padding-top: 12px;
+  }
+
+  h3 ~ p {
+    margin-top: 42px;
+  }
+
+  @media (max-width: $tabletDown) {
+    h3 ~ p {
+      margin-top: 24px;
+    }
+  }
+}
+
 p.has-large-font-size {
   font-size: 22px;
   font-weight: 300;
