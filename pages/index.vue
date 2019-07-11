@@ -226,6 +226,10 @@ export default {
   height: 80px;
   transform: translateY(-50%);
 
+  @media (max-width: $tabletDown) {
+    display: none;
+  }
+
   > button {
     width: 34px;
     height: 34px;

@@ -182,6 +182,13 @@ h3 {
   }
 
   @media (max-width: $tabletDown) {
+    padding-right: 7.5%;
+    padding-left: 7.5%;
+
+    h3 {
+      padding-top: 42px;
+    }
+
     h3 ~ p {
       margin-top: 24px;
     }
