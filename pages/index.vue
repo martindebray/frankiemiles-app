@@ -109,18 +109,20 @@ export default {
       ? (hightligh = hightligh[0])
       : (hightligh = hightligh);
 
+    console.log(page);
+
     let fav1 = await $axios.$get(
-      `${process.env.API}/wp-json/wp/v2/${page.acf.favorites_articles[0].article.post_type}?include=${page.acf.favorites_articles[0].article.ID}&_embed=1`
+      `${process.env.API}/wp-json/wp/v2/${page.acf.favorite_articles.article_1.post_type}?include=${page.acf.favorite_articles.article_1.ID}&_embed=1`
     );
     typeof fav1[0] !== `undefined` ? (fav1 = fav1[0]) : (fav1 = fav1);
 
     let fav2 = await $axios.$get(
-      `${process.env.API}/wp-json/wp/v2/${page.acf.favorites_articles[1].article.post_type}?include=${page.acf.favorites_articles[1].article.ID}&_embed=1`
+      `${process.env.API}/wp-json/wp/v2/${page.acf.favorite_articles.article_2.post_type}?include=${page.acf.favorite_articles.article_2.ID}&_embed=1`
     );
     typeof fav2[0] !== `undefined` ? (fav2 = fav2[0]) : (fav2 = fav2);
 
     let fav3 = await $axios.$get(
-      `${process.env.API}/wp-json/wp/v2/${page.acf.favorites_articles[2].article.post_type}?include=${page.acf.favorites_articles[2].article.ID}&_embed=1`
+      `${process.env.API}/wp-json/wp/v2/${page.acf.favorite_articles.article_3.post_type}?include=${page.acf.favorite_articles.article_3.ID}&_embed=1`
     );
     typeof fav3[0] !== `undefined` ? (fav3 = fav3[0]) : (fav3 = fav3);
 
@@ -277,11 +279,6 @@ export default {
     }
 
     &:hover {
-      img {
-        transform: translateY(-8px);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-      }
-
       .arrow {
         transform: scaleX(2);
       }

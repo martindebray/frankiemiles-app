@@ -309,7 +309,7 @@ blockquote.is-style-large {
 
   a {
     border-radius: 25.5px;
-    background-color: #28387b;
+    background-color: #cbd77f;
     color: $purewhite !important;
     font-size: 12px;
     font-weight: 500;
@@ -328,9 +328,9 @@ blockquote.is-style-large {
     transition: 0.3s ease;
 
     &:hover {
-      background: rgb(241, 87, 49);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-      transform: translateY(-2px);
+      background: #d4e088;
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.35); */
+      /* transform: translateY(-2px); */
     }
   }
 

@@ -66,13 +66,6 @@ export default {
       transition: all 0.5s;
       transform-origin: bottom center;
     }
-
-    &:hover {
-      img {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-        transform: translateY(-8px) !important;
-      }
-    }
   }
 
   &.grid2 {
