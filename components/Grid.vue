@@ -8,7 +8,7 @@
       <nuxt-link v-if="item.type !== `press`" :class="item.type" :to="`/${item.type}/${item.slug}`">
         <img
           v-if="item._embedded['wp:featuredmedia'] && item._embedded['wp:featuredmedia'][0]"
-          :src="item._embedded['wp:featuredmedia'][0].source_url"
+          v-lazy="item._embedded['wp:featuredmedia'][0].source_url"
           :title="item._embedded['wp:featuredmedia'][0].title.rendered"
         />
         <p class="t-cat" v-if="item.type === `projects`">Comissioned Projects</p>
@@ -22,7 +22,7 @@
       <a v-else :href="item.acf.link.url" target="_blank" :class="item.type">
         <img
           v-if="item._embedded['wp:featuredmedia'] && item._embedded['wp:featuredmedia'][0]"
-          :src="item._embedded['wp:featuredmedia'][0].source_url"
+          v-lazy="item._embedded['wp:featuredmedia'][0].source_url"
           :title="item._embedded['wp:featuredmedia'][0].title.rendered"
         />
         <p v-if="item.title" class="grid-item-title">{{item.title.rendered}}</p>

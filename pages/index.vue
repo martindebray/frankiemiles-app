@@ -31,7 +31,7 @@
       <div v-for="(i, k) in posts" :key="k" v-animate="'r-slide-down'">
         <div>
           <nuxt-link :to="`/${i.type}/${i.slug}`">
-            <img :src="i._embedded['wp:featuredmedia'][0].source_url" />
+            <img v-lazy="i._embedded['wp:featuredmedia'][0].source_url" />
             <p class="t-cat" v-if="i.type === `projects`">Comissioned Projects</p>
             <p
               class="t-cat"

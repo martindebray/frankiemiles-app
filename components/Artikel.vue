@@ -8,7 +8,7 @@
     <figure class="artikel-hero" v-animate="'r-slide-down'">
       <img
         v-if="post._embedded['wp:featuredmedia']"
-        :src="post._embedded['wp:featuredmedia'][0].source_url"
+        v-lazy="post._embedded['wp:featuredmedia'][0].source_url"
         :title="post._embedded['wp:featuredmedia'][0].title.rendered"
       />
       <figcaption
