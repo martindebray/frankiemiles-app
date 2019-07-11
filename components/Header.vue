@@ -33,7 +33,7 @@
         <span>Menu</span>
       </div>
       <div id="logo">
-        <nuxt-link to="/">Frankie Miles</nuxt-link>
+        <a href="/">Frankie Miles</a>
       </div>
       <div class="right">
         <div class="m-social">
