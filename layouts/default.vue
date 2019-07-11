@@ -627,8 +627,8 @@ figcaption {
   transition-timing-function: cubic-bezier($cubic1);
 
   @media (max-width: $tabletDown) {
-    transition-delay: 0s;
-    transition-duration: 0.2s;
+    /* transition-delay: 0s;
+    transition-duration: 0.2s; */
   }
 }
 

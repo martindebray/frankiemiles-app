@@ -643,6 +643,7 @@ export default {
       display: flex;
       flex-direction: column;
       text-align: center;
+      height: 100vh;
 
       justify-content: flex-start;
       text-align: left;
@@ -732,6 +733,8 @@ export default {
   }
 
   @media (max-width: $tabletDown) {
+    height: 100vh;
+
     #menu {
       position: fixed;
       top: 80px;
