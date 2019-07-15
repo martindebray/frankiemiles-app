@@ -21,7 +21,7 @@
           v-if="resultLength === 0"
         >
           {{feedbackMsg}}
-          <span class="emoji" v-if="resultLength === 0">:(</span>
+          <span class="emoji" v-if="feedbackMsg.length > 0 && resultLength === 0">:(</span>
         </p>
         <p class="result" v-if="resultLength > 0">{{feedbackMsg}}</p>
       </div>
