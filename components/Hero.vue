@@ -15,7 +15,7 @@
       </div>
     </nuxt-link>
   </div>
-  <div class="hero" v-else-if="type === `normal`">
+  <div class="hero" v-else-if="type === `normal`" data-aos="fade-up">
     <img
       v-if="data._embedded['wp:featuredmedia']"
       :src="data._embedded['wp:featuredmedia'][0].source_url"

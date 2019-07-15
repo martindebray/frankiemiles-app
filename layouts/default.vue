@@ -9,18 +9,22 @@
 </template>
 
 <script>
-import Vue from "vue";
-import VueAnimate from "vue-animate-scroll";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import CustomHeader from "~/components/Header";
 import CustomFooter from "~/components/Footer";
-
-Vue.use(VueAnimate);
 
 export default {
   components: {
     CustomHeader,
     CustomFooter
+  },
+  created() {
+    AOS.init({
+      duration: 400,
+      easing: "ease-out"
+    });
   },
   data() {
     return {
@@ -29,6 +33,7 @@ export default {
   },
   watch: {
     $route(to, from) {
+      window.scrollTo(0, 0);
       this.key = this.key + 1;
       /**
        * we need that to refresh the header each route change
@@ -52,10 +57,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-}
-
-main {
-  /* min-height: 100vh; */
 }
 
 .wrap {
@@ -512,8 +513,6 @@ blockquote.is-style-large {
   width: fit-content;
   justify-content: center;
   justify-items: center;
-  /* align-content: center; */
-  /* align-items: center; */
   margin: 40px auto;
   width: 100%;
 
@@ -616,33 +615,5 @@ figcaption {
 .page-enter,
 .page-leave-active {
   opacity: 0;
-}
-
-/**
- * Reveal Animations
- */
-.animate {
-  transition-delay: 0.025s;
-  transition-duration: 0.5s;
-  transition-timing-function: cubic-bezier($cubic1);
-
-  @media (max-width: $tabletDown) {
-    /* transition-delay: 0s;
-    transition-duration: 0.2s; */
-  }
-}
-
-.r-slide-down {
-  opacity: 0;
-  transform: translateY(140px);
-
-  @media (max-width: $tabletDown) {
-    transform: translateY(120px);
-  }
-}
-
-.r-slide-down.animate-active {
-  opacity: 1;
-  transform: translateY(0px);
 }
 </style>

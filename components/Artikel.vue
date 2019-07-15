@@ -1,11 +1,11 @@
 <template>
   <div :class="`artikel ${post.type === `journal` ? `journal` : `base`}`">
-    <div class="artikel-head" v-animate="'r-slide-down'">
+    <div class="artikel-head" data-aos="fade-up">
       <p class="t-cat" v-if="post.type === `projects`">{{post.type}}: {{post.title.rendered}}</p>
       <h1 class="h1">{{post.title.rendered}}</h1>
       <p class="t-cat" v-if="post.type !== `projects`">{{post._embedded['wp:term'][0][0].name}}</p>
     </div>
-    <figure class="artikel-hero" v-animate="'r-slide-down'">
+    <figure class="artikel-hero" data-aos="fade-up">
       <img
         v-if="post._embedded['wp:featuredmedia']"
         v-lazy="post._embedded['wp:featuredmedia'][0].source_url"
@@ -23,11 +23,14 @@
     <p class="cta" v-if="post.type === `projects`">
       <nuxt-link :to="`/${post.type}`">View all {{post.type}}</nuxt-link>
     </p>
-    <UMayLike v-else :data="post.categories[0]" v-animate="'r-slide-down'" />
+    <UMayLike v-else :data="post.categories[0]" data-aos="fade-up" />
   </div>
 </template>
 
 <script>
+import AOS from "aos";
+import axios from "axios";
+
 import UMayLike from "~/components/UMayLike";
 import Blocks from "~/components/Blocks";
 
@@ -36,7 +39,7 @@ export default {
     UMayLike,
     Blocks
   },
-  props: ["data"],
+  props: ["data", "img"],
   data() {
     return {
       post: this.data,
@@ -44,8 +47,10 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.post);
     this.url = process.env.API;
+    setTimeout(() => {
+      AOS.refresh();
+    }, 1000);
   },
   head() {
     return {
@@ -73,9 +78,6 @@ export default {
     .artikel-head {
       padding: 0 7.5%;
       text-align: center;
-    }
-
-    .artikel-hero {
     }
 
     .artikel-markup {

@@ -8,39 +8,34 @@
       :paginationEnabled="false"
       :navigationEnabled="true"
     >
-      <Slide v-for="(i, k) in finalArr.slice(0,3)" :key="k">
+      <Slide v-for="(i, k) in postsArray.slice(0,3)" :key="k">
         <Hero v-if="i" :data="i.post" type="home" />
       </Slide>
     </Carousel>
 
-    <div v-html="page.content.rendered" class="t-wrap t-big-serif" v-animate="'r-slide-down'" />
+    <div v-html="page.content.rendered" class="t-wrap t-big-serif" data-aos="fade-up" />
 
-    <div class="favorites" v-animate="'r-slide-down'">
-      <Grid class="grid3 grid-sm" :data="favs" />
-    </div>
+    <Favorites :favs="page.acf.favorite_articles" />
 
-    <Hero
-      v-if="hightligh"
-      :data="hightligh"
-      type="home"
-      class="higlight"
-      v-animate="'r-slide-down'"
+    <Highlights
+      :query="`/wp-json/wp/v2/${page.acf.highlight_article.post_type}?include=${page.acf.highlight_article.ID}&_embed=1`"
     />
 
     <div class="wall" v-if="posts">
-      <div v-for="(i, k) in posts" :key="k" v-animate="'r-slide-down'">
+      <div v-for="(i, k) in posts" :key="k">
         <div>
           <nuxt-link :to="`/${i.type}/${i.slug}`">
-            <img v-lazy="i._embedded['wp:featuredmedia'][0].source_url" />
-            <p class="t-cat" v-if="i.type === `projects`">Comissioned Projects</p>
+            <img v-lazy="i._embedded['wp:featuredmedia'][0].source_url" data-aos="fade-up" />
+            <p class="t-cat" v-if="i.type === `projects`" data-aos="fade-up">Comissioned Projects</p>
             <p
               class="t-cat"
               v-else-if="i.type !==`projects` && i._embedded['wp:term']"
+              data-aos="fade-up"
             >{{i._embedded["wp:term"][0][0].name}}</p>
-            <p class="t-cat" v-else>{{i.type}}</p>
-            <p class="wall-title">{{i.title.rendered}}</p>
-            <div v-if="i.excerpt" class="t-excerpt" v-html="i.excerpt.rendered" />
-            <span class="arrow">
+            <p class="t-cat" v-else data-aos="fade-up">{{i.type}}</p>
+            <p class="wall-title" data-aos="fade-up">{{i.title.rendered}}</p>
+            <div v-if="i.excerpt" class="t-excerpt" v-html="i.excerpt.rendered" data-aos="fade-up" />
+            <span class="arrow" data-aos="fade-up">
               <svg height="3" viewBox="0 0 17 3" width="17" xmlns="http://www.w3.org/2000/svg">
                 <g fill="none" fill-rule="evenodd" transform="translate(.0004 .008)">
                   <path d="m.4996 1.4963h13.7914" stroke="#464646" stroke-width=".6" />
@@ -65,13 +60,17 @@ import axios from "axios";
 
 import Hero from "~/components/Hero";
 import Grid from "~/components/Grid";
+import Favorites from "~/components/Favorites";
+import Highlights from "~/components/Highlights";
 
 export default {
   components: {
     Carousel,
     Slide,
     Hero,
-    Grid
+    Grid,
+    Favorites,
+    Highlights
   },
   data() {
     return {
@@ -89,7 +88,7 @@ export default {
 
     typeof page[0] !== `undefined` ? (page = page[0]) : (page = page);
 
-    let finalArr = [];
+    let postsArray = [];
 
     let all = $axios
       .get(
@@ -98,7 +97,7 @@ export default {
       .then(res => {
         const d = res.data;
         d.map((i, k) => {
-          finalArr.push({
+          postsArray.push({
             title: i.title.rendered,
             date: i.date.toString(),
             post: i
@@ -106,37 +105,10 @@ export default {
         });
       })
       .then(() => {
-        return finalArr;
+        return postsArray;
       });
 
-    let hightligh = await $axios.$get(
-      `${process.env.API}/wp-json/wp/v2/${page.acf.highlight_article.post_type}?include=${page.acf.highlight_article.ID}&_embed=1`
-    );
-    typeof hightligh[0] !== `undefined`
-      ? (hightligh = hightligh[0])
-      : (hightligh = hightligh);
-
-    let fav1 = await $axios.$get(
-      `${process.env.API}/wp-json/wp/v2/${page.acf.favorite_articles.article_1.post_type}?include=${page.acf.favorite_articles.article_1.ID}&_embed=1`
-    );
-    typeof fav1[0] !== `undefined` ? (fav1 = fav1[0]) : (fav1 = fav1);
-
-    let fav2 = await $axios.$get(
-      `${process.env.API}/wp-json/wp/v2/${page.acf.favorite_articles.article_2.post_type}?include=${page.acf.favorite_articles.article_2.ID}&_embed=1`
-    );
-    typeof fav2[0] !== `undefined` ? (fav2 = fav2[0]) : (fav2 = fav2);
-
-    let fav3 = await $axios.$get(
-      `${process.env.API}/wp-json/wp/v2/${page.acf.favorite_articles.article_3.post_type}?include=${page.acf.favorite_articles.article_3.ID}&_embed=1`
-    );
-    typeof fav3[0] !== `undefined` ? (fav3 = fav3[0]) : (fav3 = fav3);
-
-    let favs = [];
-    favs.push(fav1);
-    favs.push(fav2);
-    favs.push(fav3);
-
-    return { page, hightligh, fav1, fav2, fav3, favs, finalArr };
+    return { page, postsArray };
   },
   methods: {
     getLength() {
@@ -221,6 +193,19 @@ export default {
 </style>
 
 <style lang="scss">
+.VueCarousel {
+  position: relative;
+  &::before {
+    content: "";
+    height: 90vh;
+    width: 100vw;
+    background: white;
+  }
+
+  &-wrapper {
+    position: absolute;
+  }
+}
 .VueCarousel-navigation {
   position: absolute;
   z-index: 999;
@@ -268,7 +253,7 @@ export default {
       content: "";
       background: url("../assets/img/arrow-r.svg");
       display: inline-block;
-      width: 7px;
+      width: 21px;
       height: 20px;
     }
   }
@@ -281,7 +266,7 @@ export default {
       content: "";
       background: url("../assets/img/arrow-l.svg");
       display: inline-block;
-      width: 7px;
+      width: 17px;
       height: 20px;
     }
   }

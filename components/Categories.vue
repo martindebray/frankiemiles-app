@@ -1,6 +1,6 @@
 <template>
   <section class>
-    <div v-for="category in categories">
+    <div v-for="(category, k) in categories" :key="k">
       <div v-if="category.name !== `Uncategorized`">
         <h2>{{category.name}}</h2>
         <!-- <div v-html="category.content.rendered"></div> -->

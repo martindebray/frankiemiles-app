@@ -1,9 +1,10 @@
 <template>
   <div class="grid">
     <div
-      v-for="item in data"
+      v-for="(item, k) in data"
       :class="`grid-item grid-item--${item.type}`"
-      v-animate="'r-slide-down'"
+      data-aos="fade-up"
+      :key="k"
     >
       <nuxt-link v-if="item.type !== `press`" :class="item.type" :to="`/${item.type}/${item.slug}`">
         <img

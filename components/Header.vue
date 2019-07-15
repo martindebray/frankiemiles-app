@@ -33,11 +33,11 @@
         <span>Menu</span>
       </div>
       <div id="logo">
-        <a href="/">Frankie Miles</a>
+        <nuxt-link to="/">Frankie Miles</nuxt-link>
       </div>
       <div class="right">
         <div class="m-social">
-          <div v-for="item in social.items">
+          <div v-for="(item,k) in social.items" :key="k">
             <a :href="item.url" :title="item.title" :class="item.title" target="_blank">
               <div v-if="item.title.toLowerCase() === `youtube`">
                 <svg
@@ -165,7 +165,7 @@
     </div>
 
     <nav id="menu">
-      <div v-for="item in menu.items" @click="triggerMenuMobile">
+      <div v-for="(item,k) in menu.items" @click="triggerMenuMobile" :key="k">
         <nuxt-link
           exact
           :to="`/${item.url.replace(`${url}/`, ``)}`"
@@ -233,7 +233,7 @@
             <div>
               <nuxt-link to="/journal" class="menu-link--sub">Show all</nuxt-link>
             </div>
-            <div v-if="category.count > 0" v-for="category in categories">
+            <div v-if="category.count > 0" v-for="(category, k) in categories" :key="k">
               <nuxt-link
                 v-if="category.name !== `Uncategorized`"
                 :to="`/category/${category.slug}`"
@@ -581,7 +581,6 @@ export default {
 
     overflow: hidden;
     height: 0;
-    /* height: 75px; */
     background: rgba(255, 255, 255, 0);
     transition: all 0.1s ease;
 
@@ -591,9 +590,6 @@ export default {
         background: rgba(255, 255, 255, 1);
       }
     }
-  }
-
-  .menu-link--sub {
   }
 
   .menu-sub-header {
@@ -677,9 +673,6 @@ export default {
       display: flex;
     }
 
-    #menu-sub-back {
-    }
-
     .triggered {
       z-index: 10;
 
@@ -711,7 +704,6 @@ export default {
   #burger {
     .icon {
       transform: translateY(1px);
-      /* transform: rotate(90deg); */
 
       rect {
         transform-origin: center;
