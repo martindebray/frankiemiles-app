@@ -231,10 +231,13 @@ export default {
   transform: translateY(-50%);
 
   @media (max-width: $tabletDown) {
-    display: none;
+    /* display: none; */
+    left: 4.5%;
+    width: 91%;
   }
 
   > button {
+    outline: none !important;
     width: 34px;
     height: 34px;
     border-radius: 100%;
@@ -250,6 +253,10 @@ export default {
     &:hover {
       background-color: $purewhite !important;
       color: $pureblack !important;
+
+      &::after {
+        filter: invert(1);
+      }
     }
   }
 
@@ -258,8 +265,11 @@ export default {
     font-size: 0;
 
     &::after {
-      font-size: 16px;
-      content: "<";
+      content: "";
+      background: url("../assets/img/arrow-r.svg");
+      display: inline-block;
+      width: 21px;
+      height: 20px;
     }
   }
 
@@ -268,8 +278,11 @@ export default {
     font-size: 0;
 
     &::after {
-      font-size: 16px;
-      content: ">";
+      content: "";
+      background: url("../assets/img/arrow-l.svg");
+      display: inline-block;
+      width: 17px;
+      height: 20px;
     }
   }
 }
