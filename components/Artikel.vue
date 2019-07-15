@@ -20,7 +20,7 @@
       <Blocks :data="post.blocks" />
     </div>
 
-    <p class="cta" v-if="post.type === `projects`" v-animate="'r-slide-down'">
+    <p class="cta" v-if="post.type === `projects`">
       <nuxt-link :to="`/${post.type}`">View all {{post.type}}</nuxt-link>
     </p>
     <UMayLike v-else :data="post.categories[0]" v-animate="'r-slide-down'" />

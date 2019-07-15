@@ -268,7 +268,7 @@ export default {
       content: "";
       background: url("../assets/img/arrow-r.svg");
       display: inline-block;
-      width: 21px;
+      width: 7px;
       height: 20px;
     }
   }
@@ -281,7 +281,7 @@ export default {
       content: "";
       background: url("../assets/img/arrow-l.svg");
       display: inline-block;
-      width: 17px;
+      width: 7px;
       height: 20px;
     }
   }
