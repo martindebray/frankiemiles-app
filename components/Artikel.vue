@@ -50,7 +50,8 @@ export default {
     this.url = process.env.API;
     setTimeout(() => {
       AOS.refresh();
-    }, 1000);
+      console.log("resfreshed");
+    }, 1500);
   },
   head() {
     return {
