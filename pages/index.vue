@@ -255,6 +255,7 @@ export default {
       display: inline-block;
       width: 21px;
       height: 20px;
+      left: -1px;
     }
   }
 
@@ -297,7 +298,7 @@ export default {
     font-weight: 400;
     letter-spacing: 0.8px;
     margin: 8px 0px 10px 0px;
-    line-height:30px;
+    line-height: 30px;
   }
 
   p {
