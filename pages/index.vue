@@ -296,7 +296,7 @@ export default {
     font-size: 24px;
     font-weight: 400;
     letter-spacing: 0.8px;
-    margin: 8px 0px 10px 0px;
+    margin: 8px 0px 14px 0px;
     line-height:30px;
   }
 
