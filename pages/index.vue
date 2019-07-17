@@ -255,6 +255,7 @@ export default {
       display: inline-block;
       width: 21px;
       height: 20px;
+      left: -1px;
     }
   }
 
@@ -326,6 +327,13 @@ export default {
 
     .t-cat {
       margin-top: 16px;
+    }
+
+    .t-excerpt p {
+      font-size: 14px;
+      font-weight: 300;
+      max-width: 90%;
+      margin-left: 0;
     }
 
     .arrow {

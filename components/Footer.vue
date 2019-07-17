@@ -233,14 +233,28 @@ export default {
 
           > div {
             position: absolute;
-            bottom: 14%;
             top: 0;
+            bottom: 0;
             left: 0;
             right: 0;
             color: white;
             text-align: center;
             display: grid;
             align-content: end;
+
+            .big {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              margin: 0;
+              width: 100%;
+            }
+
+            .t-cat {
+              position: absolute;
+              bottom: 14%;
+              width: 100%;
+            }
           }
         }
 

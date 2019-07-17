@@ -12,11 +12,10 @@
         :title="post._embedded['wp:featuredmedia'][0].title.rendered"
       />
       <figcaption
-        v-if="post._embedded['wp:featuredmedia']"
+        v-if="post._embedded['wp:featuredmedia'][0].caption.rendered"
       >{{post._embedded['wp:featuredmedia'][0].caption.rendered}}</figcaption>
     </figure>
-
-    <div class="artikel-markup">
+    <div :class="`artikel-markup ${this.data.acf.theme === `Black` ? `artikel-dark` : ``}`">
       <Blocks :data="post.blocks" />
     </div>
 
@@ -50,7 +49,6 @@ export default {
     this.url = process.env.API;
     setTimeout(() => {
       AOS.refresh();
-      console.log("resfreshed");
     }, 1500);
   },
   head() {
@@ -132,6 +130,14 @@ export default {
     }
   }
 
+  &-dark {
+    background: $pureblack;
+
+    * {
+      color: $purewhite !important;
+    }
+  }
+
   &-head {
     h1 {
       max-width: 1100px;
@@ -159,7 +165,12 @@ export default {
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 34px auto 56px;
+    margin: 34px auto 0;
+
+    ~ div {
+      padding-top: 56px !important;
+      padding-bottom: 56px !important;
+    }
   }
 
   h3,
