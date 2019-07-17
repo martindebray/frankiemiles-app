@@ -276,7 +276,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  margin: 48px auto;
+  margin: 62px auto;
   padding: 0 12.9%;
 
   @media (max-width: $tablet) {
@@ -296,7 +296,8 @@ export default {
     font-size: 24px;
     font-weight: 400;
     letter-spacing: 0.8px;
-    margin: 6px auto;
+    margin: 8px 0px 10px 0px;
+    line-height:30px;
   }
 
   p {
@@ -324,7 +325,7 @@ export default {
     }
 
     .t-cat {
-      margin-top: 20px;
+      margin-top: 16px;
     }
 
     .arrow {

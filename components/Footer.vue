@@ -109,7 +109,7 @@ export default {
     display: flex;
     justify-content: center;
     background: $fakewhite;
-    border-bottom: solid 2px #d7dde4;
+    border-bottom: solid 1px #d7dde4;
 
     div {
       display: inline-block;
@@ -180,7 +180,7 @@ export default {
             margin-top: 12px;
 
             > li {
-              margin-top: 2px;
+              margin-top: 6px;
 
               > a {
                 font-size: 12px;

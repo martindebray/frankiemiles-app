@@ -178,7 +178,7 @@ h3 {
   }
 
   h3 ~ p {
-    margin-top: 42px;
+    margin-top: 32px;
   }
 
   @media (max-width: $tabletDown) {
@@ -197,11 +197,11 @@ h3 {
 
 p.has-large-font-size {
   font-size: 22px;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
   font-stretch: normal;
-  line-height: 1.64;
-  letter-spacing: normal;
+  line-height: 1.6;
+  letter-spacing: 0.4pt;
   color: #090909;
 
   &.wide {
@@ -217,11 +217,11 @@ p.has-large-font-size {
 p,
 blockquote {
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.69;
-  letter-spacing: normal;
+  letter-spacing: 0.2pt;
   color: #090909;
 
   margin: 18px auto;
@@ -238,11 +238,11 @@ blockquote {
 p.has-small-font-size,
 blockquote {
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.93;
-  letter-spacing: normal;
+  letter-spacing: 0.2pt;
   color: #090909;
 
   &.wide {
@@ -315,8 +315,8 @@ blockquote.is-style-large {
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    line-height: 1.78;
-    letter-spacing: normal;
+    line-height: 1.6;
+    letter-spacing: -0.2pt;
     text-align: center;
     color: #747474;
 
@@ -397,7 +397,7 @@ blockquote.is-style-large {
 
     .grid-item-title {
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       font-style: normal;
       font-stretch: normal;
       line-height: 1.71;
@@ -574,7 +574,7 @@ figcaption {
   line-height: 1.3;
   letter-spacing: 0.4px;
   color: #787878;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .m-social {

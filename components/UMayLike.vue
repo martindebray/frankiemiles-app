@@ -45,7 +45,7 @@ export default {
   text-align: center;
 
   h4 {
-    margin-bottom: 40px;
+    margin-bottom: 32px;
 
     position: relative;
     display: inline-block;
@@ -57,7 +57,7 @@ export default {
       position: absolute;
       bottom: 0;
       left: 0;
-      height: 2px;
+      height: 0px;
       width: 100%;
       background: black;
     }
