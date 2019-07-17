@@ -408,7 +408,7 @@ blockquote.is-style-large {
 }
 
 .wp-block-image {
-  margin: 64px auto 72px;
+  margin: 54px auto 72px;
 
   .aligncenter {
     width: 100%;

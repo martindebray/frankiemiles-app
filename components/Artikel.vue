@@ -73,7 +73,7 @@ export default {
 
 <style lang="scss">
 .artikel {
-  margin-top: 150px;
+  margin-top: 180px;
 
   &.journal {
     .artikel-head {
