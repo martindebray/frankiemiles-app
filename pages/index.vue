@@ -329,6 +329,13 @@ export default {
       margin-top: 16px;
     }
 
+    .t-excerpt p {
+      font-size: 14px;
+      font-weight: 300;
+      max-width: 90%;
+      margin-left: 0;
+    }
+
     .arrow {
       display: inline-block;
       /* margin-top: 24px; */
