@@ -1,5 +1,5 @@
 <template>
-  <Grid :id="this.type" class="grid4 grid-md" :data="posts" />
+  <Grid :id="this.type" class="grid4 grid-md grid-press" :data="posts" />
 </template>
 
 <script>

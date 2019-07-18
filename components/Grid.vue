@@ -47,6 +47,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.grid-press {
+  .grid-item {
+    .grid-item-title {
+      &::after {
+        content: "⤴";
+        position: absolute;
+        margin-left: 6px;
+        transform-origin: center bottom;
+        transition: all 0.5s;
+      }
+    }
+  }
+
+  .grid-item:hover {
+    .grid-item-title {
+      &::after {
+        transform: scaleY(1.1);
+      }
+    }
+  }
+}
+
 .grid {
   display: grid;
   flex-wrap: wrap;
