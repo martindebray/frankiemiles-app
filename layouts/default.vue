@@ -61,7 +61,7 @@ html {
 
 .wrap {
   max-width: 1280px;
-  margin: 166px auto 0;
+  margin: 180px auto 0;
   padding: 0 8.6% 130px;
 
   .text {
@@ -408,7 +408,7 @@ blockquote.is-style-large {
 }
 
 .wp-block-image {
-  margin: 54px auto 72px;
+  margin: 74px auto 72px;
 
   .aligncenter {
     width: 100%;

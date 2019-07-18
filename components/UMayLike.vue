@@ -40,7 +40,8 @@ export default {
 
 <style lang="scss" scoped>
 #umaylike {
-  margin: 96px 12.9%;
+  margin: 0px 12.9%;
+  margin-bottom: 24px;
   padding: 0 10%;
   text-align: center;
 
